@@ -1,0 +1,52 @@
+{
+  "name": "fe-fans-coupon",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "dev:e2e": "vue-cli-service test:e2e --mode=development",
+    "build": "vue-cli-service build",
+    "build:ci": "vue-cli-service build --report",
+    "lint": "eslint --ext .js,.vue --fix . && stylelint --fix \"src/**/*.vue\" \"src/**/*.scss\" && markdownlint docs/*.md *.md && prettier --list-different --write \"**/*.{js,json,css,scss,vue,md}\"",
+    "deploy-dev": "npm run build && rsync -vzrtopg --progress ./dist/*  rsync://10.41.41.197:11873/mjs_weiboad_apps_fentiao_coupon"
+  },
+  "dependencies": {
+    "axios": "^0.18.1",
+    "husky": "^2.3.0",
+    "lint-staged": "^8.1.7",
+    "postcss-aspect-ratio-mini": "0.0.2",
+    "postcss-px-to-viewport": "0.0.3",
+    "postcss-viewport-units": "^0.1.4",
+    "postcss-write-svg": "^3.0.1",
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.1.0",
+    "vue-property-decorator": "^8.2.1",
+    "vue-router": "^3.0.7",
+    "vuex": "^3.1.1",
+    "vuex-class": "^0.3.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.9.2",
+    "@vue/cli-plugin-pwa": "^3.9.0",
+    "@vue/cli-plugin-typescript": "^3.9.0",
+    "@vue/cli-service": "^3.9.2",
+    "echarts": "^4.6.0",
+    "echarts-gl": "^1.1.1",
+    "node-sass": "^4.9.2",
+    "sass-loader": "^7.1.0",
+    "svg-sprite-loader": "^4.1.6",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.5.3",
+    "vue-cli-plugin-element": "^1.0.1",
+    "vue-echarts": "^4.1.0",
+    "vue-meta-info": "^0.1.7",
+    "vue-template-compiler": "^2.5.21",
+    "webpack-manifest-plugin": "^2.2.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
