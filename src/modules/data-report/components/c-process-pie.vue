@@ -3,7 +3,6 @@
     <div class="ft-extension-title">推广完成率</div>
     <div class="ft-process-wrapper">
       <canvas class="ft-process-canvas"/>
-      <div class="ft-process-ball"/>
     </div>
     <div class="ft-process-inner-content">
       <div>{{title}}</div>
@@ -27,7 +26,13 @@
       // @ts-ignore
       canvas.height = 200;
       // @ts-ignore
-      return canvas.getContext('2d');
+      const ctx = canvas.getContext('2d');
+      const ratio = this.getPixelRatio(ctx);
+      // @ts-ignore
+      canvas.width *= ratio;
+      // @ts-ignore
+      canvas.height *= ratio;
+      return ctx;
     }
 
     private data() {
@@ -35,8 +40,8 @@
         radius: 100,
         thickness: 20,
         innerRadius: 80,
-        startAngle: -60,
-        endAngle: 150,
+        startAngle: -195,
+        endAngle: 15,
         x: 0,
         y: 0
       };
@@ -45,8 +50,6 @@
     private mounted() {
       // @ts-ignore
       this.ctx.translate(100, 100);
-      // @ts-ignore
-      this.ctx.rotate(this.angle2Radian(225));
       // @ts-ignore
       this.ctx.fillStyle = '#eee'; // 初始填充颜色
       // @ts-ignore
@@ -57,6 +60,16 @@
       // @ts-ignore
       this.ctx.fillStyle = lingrad;
       this.renderPie();
+    }
+
+    private getPixelRatio(context: any) {
+      const backingStore = context.backingStorePixelRatio ||
+        context.webkitBackingStorePixelRatio ||
+        context.mozBackingStorePixelRatio ||
+        context.msBackingStorePixelRatio ||
+        context.oBackingStorePixelRatio ||
+        context.backingStorePixelRatio || 1;
+      return (window.devicePixelRatio || 1) / backingStore;
     }
 
     private renderRing(startAngle: number, endAngle: number) {
@@ -74,6 +87,10 @@
       const twoCtrlPoint = this.calcRingPoint(this.x, this.y, this.innerRadius + this.thickness / 2, startAngle);
       // @ts-ignore 绘制外环与内环第二个连接处的圆环
       this.ctx.arc(twoCtrlPoint.x, twoCtrlPoint.y, this.thickness / 2, this.angle2Radian(-90), this.angle2Radian(270));
+      // @ts-ignore
+      this.ctx.closePath();
+      // @ts-ignore
+      this.ctx.arc(0, 0, 5, 0, Math.PI * 2);
       // @ts-ignore
       this.ctx.fill();
       // ctx.stroke()
@@ -178,32 +195,6 @@
           letter-spacing: 0;
           text-align: center;
         }
-      }
-    }
-
-    .ft-process-ball {
-      width: 9px;
-      height: 9px;
-      background-color: black;
-      border-radius: 50%;
-      position: absolute;
-      animation: animX 4s cubic-bezier(0.36,0,0.64,1) -2s infinite alternate, animY 4s cubic-bezier(0.36, 0, 0.64, 1) 0s infinite alternate;
-    }
-
-    @keyframes animX {
-      0% {
-        left: 10px;
-      }
-      100% {
-        left: 170px;
-      }
-    }
-    @keyframes animY {
-      0% {
-        top: 10px;
-      }
-      100% {
-        top: 170px;
       }
     }
   }

@@ -24,8 +24,8 @@ glob.sync('./src/pages/*.ts').forEach(entry => {
     template: path.join(__dirname, '/src/template.html'),
     filename:  `pages/${filename}.html`,
     chunks: ['common', 'vue', filename, ...pageConfig.chunks],
-    head: pageConfig.head || '',
     title: pageConfig.title || '',
+    metas: pageConfig.metas || {},
     styles: pageConfig.styles || [],
     scripts: pageConfig.scripts || [],
     skeleton: pageConfig.skeleton || '',
@@ -33,7 +33,7 @@ glob.sync('./src/pages/*.ts').forEach(entry => {
     debug: dev ? `
        <script src="//cdn.bootcss.com/eruda/1.1.3/eruda.min.js"></script>
        <script>eruda.init();window.isDebug=true;</script>                `
-    : '',
+        : '',
     minify: dev ? {} : {
       minifyJS: true,
       minifyCSS: true,

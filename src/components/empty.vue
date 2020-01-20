@@ -1,7 +1,7 @@
 <template>
   <div
-    :style="[{display: (isEmpty ? 'block' : 'none')}]"
-    class="ft-coupon-empty" />
+      :style="[{display: (isEmpty ? 'block' : 'none')}]"
+      class="ft-coupon-empty"/>
 </template>
 <script lang="ts">
   import {Vue, Component, Prop} from 'vue-property-decorator';

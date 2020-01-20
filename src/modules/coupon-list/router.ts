@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-// @ts-ignore
 import CouponList from './coupon-list.vue';
+
 Vue.use(Router);
 
 const couponList = new Router({
