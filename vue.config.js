@@ -30,6 +30,8 @@ glob.sync('./src/pages/*.ts').forEach(entry => {
     scripts: pageConfig.scripts || [],
     skeleton: pageConfig.skeleton || '',
     skeletonStyle: pageConfig.skeletonStyle || '',
+    initData: JSON.stringify(pageConfig.initData || {}),
+    icons: pageConfig.icons || [],
     debug: dev ? `
        <script src="//cdn.bootcss.com/eruda/1.1.3/eruda.min.js"></script>
        <script>eruda.init();window.isDebug=true;</script>                `
@@ -61,16 +63,16 @@ module.exports = {
         cacheGroups: {
           vue: {
             name: 'vue',
-            test: module => /vue/.test(module.context),
+            test: /[\\/]node_modules[\\/]vue|vue-router[\\/]/,
             chunks: 'all',
-            priority: 20,
+            priority: -5,
             enforce: true
           },
           common: {
             name: 'common',
-            test: module => /@babel|url|scheduler|debug|process|core-js|regenerator-runtime/.test(module.context),
+            test: /[\\/]node_modules[\\/]@babel|url|scheduler|debug|process|core-js|regenerator-runtime|axios[\\/]/,
             chunks: 'all',
-            priority: 20,
+            priority: 10,
             enforce: true
           },
           echarts: {
