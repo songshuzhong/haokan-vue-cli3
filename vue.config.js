@@ -2,8 +2,10 @@ const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
 const manifestPlugin = require('webpack-manifest-plugin');
+const PrerenderSpaPlugin = require('prerender-spa-plugin')
+const Renderer = PrerenderSpaPlugin.PuppeteerRenderer;
 
-const publicPath = 'https://mjs.sinaimg.cn/weiboad/apps/fentiao/mobile/coupon/';
+const publicPath = '../';
 const dev = process.env.NODE_ENV !== 'production';
 const pages = {};
 const rewrites = [];
@@ -22,8 +24,7 @@ glob.sync('./src/pages/*.ts').forEach(entry => {
   pages[filename] = {
     entry,
     template: path.join(__dirname, '/src/template.html'),
-    filename:  `pages/${filename}.html`,
-    chunks: ['common', 'vue', filename, ...pageConfig.chunks],
+    filename:  `${filename}.html`,
     title: pageConfig.title || '',
     metas: pageConfig.metas || {},
     styles: pageConfig.styles || [],
@@ -98,7 +99,20 @@ module.exports = {
           }
         }
       }
-    }
+    },
+    plugins: dev ? [] : [
+      new PrerenderSpaPlugin({
+        staticDir: path.join(__dirname, 'dist'),
+        routes: ['/', '/about', '/contact'],
+        indexPath: path.join(__dirname, 'dist', 'data.html'),
+        renderer: new Renderer({
+          inject: {
+            foo: 'bar'
+          },
+          headless: true,
+        })
+      }),
+    ],
   },
   transpileDependencies: [
     'vue-echarts',
