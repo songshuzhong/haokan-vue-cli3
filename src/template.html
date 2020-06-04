@@ -23,5 +23,8 @@
     <script type="text/javascript" src="<%=script %>"></script>
 <% } %>
 <%= htmlWebpackPlugin.options.debug%>
+<script type="text/javascript">
+    var $config = <%= htmlWebpackPlugin.options.initData %>
+</script>
 </body>
 </html>

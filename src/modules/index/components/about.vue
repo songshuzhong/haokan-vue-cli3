@@ -1,27 +1,49 @@
 <template>
   <div class="ft-extension-wrapper">
-    <svg width="100px" height="100px" viewBox="0 0 100 100">
-      <circle r="25" cx="50" cy="50" fill="none" stroke="#f00" stroke-width="50" stroke-dasharray="16 158" />
-      <circle r="25" cx="50" cy="50" fill="none" stroke="#0f0" stroke-width="50" stroke-dasharray="48 158" stroke-dashoffset="-16"/>
-      <circle r="25" cx="50" cy="50" fill="none" stroke="#00f" stroke-width="50" stroke-dasharray="79 158" stroke-dashoffset="-64"/>
-    </svg>
+    <pie
+      :width="150"
+      :r="60"
+      :stroke-width="30"
+      :dataSource="age"
+    />
+    <arch
+      :value="1"
+      :title="'人群定向'"
+    />
   </div>
 </template>
 
 <script>
-export default {}
+import Pie from '../../../components/pie';
+import Arch from '../../../components/arch';
+
+export default {
+  name: 'About',
+  components: {
+    Pie,
+    Arch,
+  },
+  data() {
+    return {
+      age: []
+    }
+  },
+  mounted() {
+    const { age } = window.$config;
+    this.age = age;
+  }
+}
 </script>
 
 <style lang="scss">
-  @keyframes fillup{
-    to{
-      stroke-dasharray: 158 158
-    }
+
+  .ft-coupon-details {
+    color: #f00;
+    color: #0f0;
+    color: #00f;
   }
-  svg{
-    transform: rotate(-90deg);
-    background: yellowgreen;
-    border-radius: 50%;
+
+  circle {
+    transition: r ease-in .25s, stroke-dasharray ease-in .25s
   }
-  circle{  animation: fillup 5s linear infinite;}
 </style>

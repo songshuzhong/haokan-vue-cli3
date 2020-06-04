@@ -25,6 +25,7 @@ glob.sync('./src/pages/*.ts').forEach(entry => {
     entry,
     template: path.join(__dirname, '/src/template.html'),
     filename:  `${filename}.html`,
+    chunks: ['common', 'vue', filename, ...pageConfig.chunks],
     title: pageConfig.title || '',
     metas: pageConfig.metas || {},
     styles: pageConfig.styles || [],

@@ -1,31 +1,33 @@
 <template>
-  <div>
-    <div id="loading-status">
-      <div id="precent">app</div>
-    </div>
+  <div class="f-contact">
+    <svg width="100px" height="100px" viewBox="0 0 100 100">
+      <circle r="25" cx="50" cy="50" fill="yellowgreen" stroke="#655" stroke-width="50" stroke-dasharray="0 158"/>
+    </svg>
   </div>
 </template>
 
 <script>
-export default {}
+    export default {}
 </script>
 
-<style>
-  #loading-status {
-    width: 300px;
-    border: 1px #669CB8 solid;
-    -webkit-box-shadow: 0px 2px 2px #D0D4D6;
-    height: 15px;
-    -webkit-border-radius: 10px;
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#E1E9EE), to(white));
-    padding: 1px;
+<style lang="scss" scoped>
+.f-contact {
+
+  @keyframes fillup {
+    to {
+      stroke-dasharray: 158 158;
+    }
   }
 
-  #precent {
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#7BC3FF), color-stop(0.5, #42A9FF), to(#7BC3FF));
-    width: 0%;
-    height: 100%;
-    -webkit-border-radius: 10px;
-    -webkit-transition: width 1s ease-in-out;
+  svg {
+    transform: rotate(-90deg);
+    background: yellowgreen;
+    border-radius: 50%;
   }
+
+  circle {
+    animation: fillup 5s linear;
+  }
+
+}
 </style>
