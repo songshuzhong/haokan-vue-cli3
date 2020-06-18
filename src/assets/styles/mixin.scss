@@ -1,0 +1,68 @@
+@mixin f-singleline-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin f-multiline-ellipsis($line) {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+.scroll-container {
+  height: 250px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  overflow: auto;
+
+  .row {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    background: white;
+  }
+
+  &::-webkit-scrollbar-corner, /* 滚动条角落 */
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-track {
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-corner,
+  &::-webkit-scrollbar-track {
+    /* 滚动条轨道 */
+    background-color: rgba(180, 160, 120, 0.1);
+    box-shadow: inset 0 0 1px rgba(180, 160, 120, 0.5);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    /* 滚动条手柄 */
+    background-color: #00adb5;
+  }
+}
+
+.coupon {
+  width: 300px;
+  height: 100px;
+  position: relative;
+  background: radial-gradient(
+        circle at right bottom,
+        transparent 10px,
+        #ffffff 0
+      )
+      top right / 50% 51px no-repeat,
+    radial-gradient(circle at left bottom, transparent 10px, #ffffff 0) top left /
+      50% 51px no-repeat,
+    radial-gradient(circle at right top, transparent 10px, #ffffff 0) bottom
+      right / 50% 51px no-repeat,
+    radial-gradient(circle at left top, transparent 10px, #ffffff 0) bottom left /
+      50% 51px no-repeat;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
+}

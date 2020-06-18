@@ -1,33 +1,76 @@
 <template>
   <div class="f-contact">
-    <svg width="100px" height="100px" viewBox="0 0 100 100">
-      <circle r="25" cx="50" cy="50" fill="yellowgreen" stroke="#655" stroke-width="50" stroke-dasharray="0 158"/>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" :height="height" :width="width">
+      <rect
+          height="4"
+          width="300"
+          stroke-width="10"
+          fill="#EEE"
+          stroke-linecap="round"
+          rx="2"
+          ry="2"
+      />
+      <rect
+          height="4"
+          fill="#FE6D00"
+          stroke-width="10"
+          stroke-linecap="round"
+          rx="2"
+          ry="2"
+      >
+        <animate
+          from="0"
+          :to="value"
+          dur="2"
+          attributeName="width"
+          fill="freeze"
+        />
+      </rect>
     </svg>
   </div>
 </template>
 
+
 <script>
-    export default {}
+export default {
+    name: 'ProgressBar',
+    props: {
+        ratio: {
+            type: Number,
+            required: false,
+            default: 1
+        },
+        width: {
+            type: Number,
+            required: false,
+            default: 300
+        },
+        height: {
+            type: Number,
+            required: false,
+            default: 4
+        }
+    },
+    data() {
+        return {
+            value: 1
+        }
+    },
+    watch: {
+        ratio: {
+            handler(val) {
+                this.running(val)
+            },
+            immediate: true
+        }
+    },
+    methods: {
+        running(val) {
+            this.value = val * this.width
+        }
+    }
+}
 </script>
 
 <style lang="scss" scoped>
-.f-contact {
-
-  @keyframes fillup {
-    to {
-      stroke-dasharray: 158 158;
-    }
-  }
-
-  svg {
-    transform: rotate(-90deg);
-    background: yellowgreen;
-    border-radius: 50%;
-  }
-
-  circle {
-    animation: fillup 5s linear;
-  }
-
-}
 </style>

@@ -8,16 +8,12 @@
       <meta name="<%=meta %>" content="<%=htmlWebpackPlugin.options.metas[meta] %>">
     <% } %>
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <style type="text/css">
-        <%=htmlWebpackPlugin.options.skeletonStyle %>
-    </style>
     <% for (var style of htmlWebpackPlugin.options.styles) { %>
         <link href="<%=style %>" rel="stylesheet">
     <% } %>
 </head>
 <body>
 <div id="app">
-    <%= htmlWebpackPlugin.options.skeleton %>
 </div>
 <% for (var script of htmlWebpackPlugin.options.scripts) { %>
     <script type="text/javascript" src="<%=script %>"></script>
