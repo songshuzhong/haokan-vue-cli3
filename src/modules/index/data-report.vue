@@ -1,16 +1,12 @@
 <template>
-  <div class="scroll-container report">
-    <h1>{{ msg }}</h1>
-    <h1 class="f-text">
-      asdfljasl;dfjadsl;fjla;skjdfl;askjdfl;aksjdfl;kdasjfl;ksjadflkjasl;dfkjadsl;kfjals;kjdfkl;asjfdl;askf
-    </h1>
-    <div class="coupon">asdfasdfas</div>
-    <p>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/contact">Contact</router-link>
-    </p>
-    <router-view></router-view>
+  <div>
+    <div class="sc-100vh">
+      <uvc :id="1" />
+    </div>
+    <div class="sc-200vh">
+      <uvc :id="2" />
+    </div>
+    <div class="sc-300vh" />
   </div>
 </template>
 
@@ -33,5 +29,20 @@ export default {
 }
 .f-text {
   @include f-multiline-ellipsis(3);
+}
+.sc-100vh {
+  position: relative;
+  background-color: #00adb5;
+  height: 120vh;
+}
+.sc-200vh {
+  position: relative;
+  height: 100vh;
+  background-color: #67c23a;
+}
+.sc-300vh {
+  position: relative;
+  height: 100vh;
+  background-color: #2472cd;
 }
 </style>

@@ -1,0 +1,336 @@
+$sf-font-path: '~@assets/fonts' !default;
+
+$white: #fff;
+
+$sf-font-size: 12px !default;
+
+$sf-body-background-color: #f1f1f1 !default;
+
+$sf-panel-background-color: #fff !default;
+$sf-panel-padding-horizontal: 20px !default;
+$sf-panel-padding-vertical: 20px !default;
+
+$sf-content-area-margin: 20px !default;
+
+$sf-brand-primary: #32a6b8 !default;
+$sf-brand-primary-light: lighten(#32a6b8, 5%) !default;
+$sf-brand-primary-dark: darken(#32a6b8, 5%) !default;
+
+$sf-brand-success: #67c23a !default;
+$sf-brand-warning: #ffb23f !default;
+$sf-brand-danger: #ee6254 !default;
+$sf-brand-info: #909399 !default;
+
+$sf-text-color: #38434e !default;
+$sf-text-color-disabled: #b5b5b5 !default;
+$sf-text-color-tip: #b5b5b5 !default;
+
+$sf-border-color-base: #e2e2e2 !default;
+
+$sf-link-text-color: $sf-brand-primary !default;
+$sf-link-text-hover-color: $sf-brand-primary-light !default;
+$sf-link-text-active-color: $sf-link-text-hover-color !default;
+$sf-link-text-focus-color: $sf-link-text-hover-color !default;
+$sf-link-text-visited-color: $sf-link-text-color !default;
+$sf-link-text-color-secondary: #2472cd !default;
+$sf-link-text-decoration: none !default;
+
+$sf-layers-navigator: 2501;
+$sf-layers-header: 2502;
+
+$sf-navigator-z-index: $sf-layers-navigator !default;
+$sf-navigator-width: 192px !default;
+$sf-navigator-collapsed-width: 60px !default;
+
+$sf-header-height: 60px !default;
+$sf-header-height-z-index: $sf-layers-header;
+
+$sf-table-border-color: #ebeef5 !default;
+$sf-table-header--fill-color: #f9f9fa !default;
+$sf-table-header-background-color: #f9f9fa !default;
+
+$sf-select-option-hover-background: rgba($sf-brand-primary, 0.1) !default;
+
+$sf-input-height: 30px !default;
+$sf-input-label-color: #666 !default;
+
+$sf-button-color: $sf-text-color !default;
+$sf-button-primary-color: $white !default;
+
+$sc-font-family: PingFang-SC-Regular, Hiragino Sans GB, WenQuanYi Micro Hei,
+  Microsoft YaHei, arial, sans-serif;
+$sc-font-path: '~@assets/fonts' !default;
+
+$sc-white: #fff !default;
+
+$wb-brand-primary: #fa7d3c !default;
+$sc-font-size: 13px !default;
+
+$sc-brand-primary: #00a9bb !default;
+$sc-brand-primary-light: #02b6ca !default;
+$sc-brand-primary-lighter: #e5f6f8 !default;
+$sc-brand-primary-dark: darken($sc-brand-primary, 10%) !default;
+
+$sc-brand-secondary: #2b313e !default;
+$sc-brand-secondary-light: lighten(#2b313e, 10%) !default;
+$sc-brand-secondary-dark: darken(#2b313e, 20%) !default;
+
+$sc-brand-success: #eb4040 !default;
+$sc-brand-warning: #eb4040 !default;
+$sc-brand-danger: #eb4040 !default;
+$sc-brand-info: #909399 !default;
+
+$sc-link-text-color: $sc-brand-primary !default;
+$sc-link-text-hover-color: $sc-brand-primary-dark !default;
+$sc-link-text-active-color: $sc-link-text-hover-color !default;
+$sc-link-text-focus-color: $sc-link-text-hover-color !default;
+$sc-link-text-visited-color: $sc-link-text-color !default;
+$sc-link-text-color-secondary: #2472cd !default;
+
+$sc-link-text-decoration: none !default;
+
+$sc-text-color: #39434e !default;
+$sc-text-color-secondary: #6b727a !default;
+$sc-text-color-tip: #9ca1a7 !default;
+$sc-text-color-placeholder: $sc-text-color-tip !default;
+$sc-text-color-disabled: #b4b8bc !default;
+$sc-text-color-title: #737373 !default;
+$sc-text-color-empty: #969faa !default;
+
+$sc-scrollbar-color: #b4b8bc !default;
+$sc-scrollbar-track: transparent !default;
+
+$sc-list-header-fill: #eff0f2 !default;
+$sc-list-header-color: #737373 !default;
+$sc-list-row-alt-fill: #fcfcfc !default;
+$sc-list-row-fill: $sc-white !default;
+
+$sc-border-color-base: #dadcde !default;
+$sc-border-color-dark: #666 !default;
+$sc-border-color-light: #ebecee !default;
+
+$sc-input-border-color: #dadcde !default;
+$sc-input-fill-color: $sc-white !default;
+$sc-input-border-radius: 4px !default;
+$sc-input-border-base: solid 1px $sc-input-border-color !default;
+$sc-input-focus-border-color: $sc-brand-primary !default;
+$sc-input-hover-border-color: $sc-input-border-color !default;
+$sc-input-disabled-fill-color: #f2f3f4 !default;
+$sc-input-disabled-text-color: #b4b8bc !default;
+$sc-input-disabled-border-color: #dadcde !default;
+$sc-input-disabled-placeholder-color: $sc-text-color-placeholder !default;
+$sc-input-label-color: $sc-text-color !default;
+$sc-input-font-size: $sc-font-size !default;
+
+$sc-input-icon-color: $sc-input-border-color !default;
+$sc-input-icon-hover-color: $sc-input-focus-border-color !default;
+$sc-input-clear-color: $sc-input-icon-color !default;
+$sc-input-clear-hover-color: $sc-input-icon-hover-color !default;
+
+$sc-input-height: 34px !default;
+$sc-input-medium-height: 28px !default;
+$sc-input-small-height: 26px !default;
+$sc-input-mini-height: 24px !default;
+
+$sc-button-padding-vertical: 7px !default;
+$sc-button-padding-horizontal: 12px !default;
+$sc-button-font-size: 14px !default;
+$sc-button-border-radius: 4px !default;
+
+$sc-button-large-padding-vertical: 11px !default;
+$sc-button-large-padding-horizontal: 12px !default;
+$sc-button-large-font-size: 14px !default;
+$sc-button-large-border-radius: 4px !default;
+
+$sc-button-medium-padding-vertical: 7px !default;
+$sc-button-medium-padding-horizontal: 12px !default;
+$sc-button-medium-font-size: 14px !default;
+$sc-button-medium-border-radius: 4px !default;
+
+$sc-button-small-padding-vertical: 7px !default;
+$sc-button-small-padding-horizontal: 12px !default;
+$sc-button-small-font-size: 12px !default;
+$sc-button-small-border-radius: 4px !default;
+
+$sc-button-mini-padding-vertical: 7px !default;
+$sc-button-mini-padding-horizontal: 12px !default;
+$sc-button-mini-font-size: 12px !default;
+$sc-button-mini-border-radius: 4px !default;
+
+$sc-button-min-width: 120px;
+$sc-button-shadow-base: 0 2px 4px 0 !default;
+$sc-button-border: $sc-border-color-light !default;
+$sc-button-color: $sc-text-color !default;
+$sc-button-fill: #f9f9fa !default;
+$sc-button-hover-border: $sc-button-border !default;
+$sc-button-hover-color: $sc-button-color !default;
+$sc-button-hover-fill: $sc-white !default;
+$sc-button-active-border: #dfe3e6 !default;
+$sc-button-active-fill: $sc-button-border !default;
+$sc-button-active-color: $sc-button-color !default;
+$sc-button-shadow: $sc-button-shadow-base rgba(50, 166, 184, 0.12) !default;
+
+$sc-button-disabled-color: $sc-text-color-disabled !default;
+$sc-button-disabled-fill: $sc-border-color-light !default;
+$sc-button-disabled-border: $sc-input-disabled-border-color !default;
+
+$sc-button-primary-border: $sc-brand-primary !default;
+$sc-button-primary-color: $sc-white !default;
+$sc-button-primary-fill: $sc-brand-primary !default;
+$sc-button-primary-hover-color: $sc-button-primary-color !default;
+$sc-button-primary-hover-fill: $sc-brand-primary-light !default;
+$sc-button-primary-hover-border: $sc-brand-primary-light !default;
+$sc-button-primary-active-color: $sc-button-primary-color !default;
+$sc-button-primary-active-fill: $sc-brand-primary-dark !default;
+$sc-button-primary-active-border: $sc-brand-primary-dark !default;
+$sc-button-primary-shadow: $sc-button-shadow-base rgba(#af4d43, 0.12) !default;
+
+$sc-button-file-fill: $sc-white !default;
+$sc-button-file-color: $sc-text-color-title !default;
+$sc-button-file-border: #b5b5b5 !default;
+$sc-button-file-shadow: none !default;
+$sc-button-file-hover-color: $sc-brand-primary-light !default;
+$sc-button-file-hover-fill: $sc-button-file-fill !default;
+$sc-button-file-hover-border: $sc-brand-primary-light !default;
+$sc-button-file-active-color: $sc-brand-primary-dark !default;
+$sc-button-file-active-fill: $sc-button-file-fill !default;
+$sc-button-file-active-border: $sc-brand-primary-dark !default;
+$sc-button-file-disabled-border: lighten($sc-button-file-border, 10%) !default;
+$sc-button-file-disabled-fill: $sc-button-file-fill !default;
+$sc-button-file-disabled-color: lighten($sc-button-file-border, 10%) !default;
+
+$sc-button-text-color: $sc-brand-primary !default;
+$sc-button-text-hover-color: $sc-brand-primary-light !default;
+$sc-button-text-active-color: $sc-brand-primary-dark !default;
+
+$sc-form-error-font-size: 12px !default;
+$sc-form-error-height: 25px !default;
+$sc-form-error-medium-height: 22px !default;
+$sc-form-error-small-height: 18px !default;
+$sc-form-error-mini-height: 18px !default;
+$sc-form-desc-color: #737373 !default;
+
+$sc-dialog-title-font-weight: bold !default;
+$sc-dialog-title-line-height: 60px !default;
+$sc-dialog-border-radius: 4px !default;
+$sc-dialog-padding-primary-horizontal: 30px !default;
+$sc-dialog-padding-primary-vertical: 20px !default;
+$sc-dialog-padding-primary: $sc-dialog-padding-primary-vertical
+  $sc-dialog-padding-primary-horizontal !default;
+$sc-dialog-header-padding-vertical: 0 !default;
+$sc-dialog-header-padding-horizontal: $sc-dialog-padding-primary-horizontal !default;
+$sc-dialog-header-padding: $sc-dialog-header-padding-vertical
+  $sc-dialog-header-padding-horizontal !default;
+$sc-dialog-title-font-size: 16px !default;
+$sc-dialog-footer-text-align: center !default;
+$sc-dialog-footer-height: 88px !default;
+$sc-dialog-background-color: $sc-white !default;
+$sc-dialog-headerbtn-offset-top: 21px !default;
+$sc-dialog-headerbtn-offset-right: 30px !default;
+$sc-dialog-footer-padding: $sc-dialog-padding-primary-vertical
+  $sc-dialog-padding-primary-horizontal $sc-dialog-padding-primary-horizontal
+  $sc-dialog-padding-primary-horizontal !default;
+
+$sc-message-box-width: 408px !default;
+$sc-message-box-padding-horizontal: 36px !default;
+$sc-message-box-padding-vertical: 36px !default;
+$sc-message-box-header-padding: 0 !default;
+$sc-message-box-content-padding: 24px 0 !default;
+$sc-message-box-close-top: -10px !default;
+$sc-message-box-close-right: -10px !default;
+$sc-message-box-title-font-size: 18px !default;
+$sc-message-box-title-font-weight: bold !default;
+
+$sc-radio-border-color: $sc-input-border-color !default;
+$sc-radio-checked-input-border-color: $sc-brand-primary !default;
+$sc-radio-checked-icon-color: $sc-white !default;
+$sc-radio-checked-icon-center-color: $sc-brand-primary !default;
+$sc-radio-checked-icon-center-size: 6px !default;
+$sc-radio-text-color: $sc-text-color !default;
+$sc-radio-checked-text-color: $sc-radio-text-color !default;
+$sc-radio-border: solid 1px $sc-radio-border-color !default;
+$sc-radio-disabled-border: $sc-radio-border !default;
+$sc-radio-disabled-fill: $sc-radio-checked-icon-color !default;
+$sc-radio-disabled-checked-border-color: $sc-radio-border-color !default;
+$sc-radio-disabled-checked-fill: $sc-radio-checked-icon-color !default;
+$sc-radio-disabled-checked-icon-color: $sc-radio-border-color !default;
+$sc-radio-disabled-label-color: $sc-text-color-disabled !default;
+$sc-radio-font-size: $sc-font-size !default;
+$sc-radio-button-checked-fill: $sc-brand-primary-lighter !default;
+$sc-radio-button-checked-text-color: $sc-brand-primary !default;
+
+$sc-checkbox-border-color: $sc-input-border-color !default;
+$sc-checkbox-checked-input-border-color: $sc-brand-primary !default;
+$sc-checkbox-checked-icon-color: $sc-white !default;
+$sc-checkbox-checked-icon-center-color: $sc-brand-primary !default;
+$sc-checkbox-checked-icon-center-size: 6px !default;
+$sc-checkbox-text-color: $sc-text-color !default;
+$sc-checkbox-checked-text-color: $sc-radio-text-color !default;
+$sc-checkbox-border: solid 1px $sc-radio-border-color !default;
+$sc-checkbox-disabled-border: $sc-radio-border !default;
+$sc-checkbox-disabled-fill: $sc-radio-checked-icon-color !default;
+$sc-checkbox-disabled-checked-border-color: $sc-radio-border-color !default;
+$sc-checkbox-disabled-checked-fill: $sc-radio-checked-icon-color !default;
+$sc-checkbox-disabled-checked-icon-color: $sc-radio-border-color !default;
+$sc-checkbox-disabled-label-color: $sc-text-color-disabled !default;
+$sc-checkbox-font-size: $sc-font-size !default;
+$sc-checkbox-button-checked-fill: $sc-brand-primary-lighter !default;
+$sc-checkbox-button-checked-text-color: $sc-brand-primary !default;
+
+$sc-select-option-hover-background: #f9f9f9 !default;
+$sc-select-option-selected: $sc-brand-primary-dark !default;
+$sc-select-option-selected-font-weight: normal !default;
+
+$sc-select-border-color: $sc-input-border-color !default;
+$sc-select-border-color-hover: $sc-input-border-color !default;
+$sc-select-hover-caret-color: $sc-brand-primary !default;
+$sc-select-hover-clear-color: $sc-input-icon-color !default;
+$sc-select-hover-clear-active-color: $sc-input-icon-hover-color !default;
+$sc-select-hover-text-color: $sc-brand-primary !default;
+
+$sc-date-hover-icon-color: $sc-brand-primary !default;
+
+$sc-datepicker-table-border-color: transparent !default;
+
+$sc-panel-scrollbar-color: $sc-scrollbar-color !default;
+$sc-panel-scrollbar-track: #fff !default;
+$sc-panel-border-color: #e6e7e8 !default;
+$sc-panel-fill: #fff !default;
+
+$sc-multi-select-active-fill: #f9f9f9 !default;
+$sc-multi-select-panel-background: #fff !default;
+$sc-multi-select-font-size: 12px !default;
+$sc-multi-select-append-fill: #f2f3f4 !default;
+$sc-multi-select-prepend-fill: #f2f3f4 !default;
+
+$sc-multi-select-tab-header-fill: #f2f3f4 !default;
+$sc-multi-select-tab-header-color: #081422 !default;
+
+$sc-selection-viewer-header-fill: #f2f3f4 !default;
+$sc-selection-viewer-fill: #fff !default;
+$sc-selection-viewer-font-size: $sc-multi-select-font-size !default;
+$sc-selection-viewer-tag-fill: #f9f9f9 !default;
+$sc-selection-viewer-tag-border-color: $sc-selection-viewer-tag-fill !default;
+$sc-selection-viewer-tag-color: #081422 !default;
+$sc-selection-viewer-tag-height: 30px !default;
+$sc-selection-viewer-tab-color: #081422 !default;
+$sc-selection-viewer-tab-active-color: #081422 !default;
+$sc-selection-viewer-font-size: $sc-multi-select-font-size !default;
+
+$sc-dropdown-menu-hover-fill: #f9f9f9 !default;
+$sc-dropdown-menu-hover-color: $sc-text-color !default;
+
+$sc-app-selector-info-border-color: #aee3e9 !default;
+
+$sc-delivery-schedule-header-fill: #f2f3f4 !default;
+$sc-delivery-schedule-hour-fill: #f9f9f9 !default;
+$sc-delivery-schedule-cell-fill: $sc-white !default;
+$sc-delivery-schedule-cell-active-fill: $sc-brand-primary !default;
+$sc-delivery-schedule-cell-hover-fill: #e6e7e8 !default;
+
+$sc-cpl-select-background-color: #f6f6f6 !default;
+$sc-cpl-select-tab-width: 70px !default;
+$sc-cpl-select-border-grey: #e7eaec !default;
+
+$sc-select-button-fill: #f6f6f6 !default;
+$sc-select-button-hover-fill: #f9f9f9 !default;

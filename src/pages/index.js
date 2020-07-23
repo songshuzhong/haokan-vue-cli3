@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import router from '~modules/index/router'
 
-import WebpPlugun from 'vue-webp-plugin'
+import components from '~components/entry'
+
+import '~assets/styles/base/index.scss'
 
 Vue.config.productionTip = false
 
-Vue.use(WebpPlugun)
+Vue.use(components)
 
 new Vue({
   router,

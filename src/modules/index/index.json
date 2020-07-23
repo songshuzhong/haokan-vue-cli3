@@ -6,9 +6,15 @@
   "scripts": [],
   "styles": [],
   "chunks": [],
+  "icon": "src/assets/imgs/favicon.png",
   "initData": {
-    "age": [{"source": "00后", "ratio": 20}, {"source": "90后", "ratio": 10}, {"source": "80后", "ratio": 30}, {"source": "70后", "ratio": 40}],
-    "uid":5049100507,
+    "age": [
+      { "source": "00后", "ratio": 20 },
+      { "source": "90后", "ratio": 10 },
+      { "source": "80后", "ratio": 30 },
+      { "source": "70后", "ratio": 40 }
+    ],
+    "uid": 5049100507,
     "root": "//mjs.sinaimg.cn/weiboad/apps/fansmore/",
     "base": "",
     "status": 0,
@@ -19,13 +25,13 @@
     "from": "android",
     "adaccount": {
       "valid": 1,
-      "balance":"2337.00",
+      "balance": "2337.00",
       "vsn": 0,
       "vdun_url": "https://security.weibo.cn/Vdun/index",
       "small_pay": "5000000"
     },
-    "ver":"3.0",
-    "default_fanscount":1000,
+    "ver": "3.0",
+    "default_fanscount": 1000,
     "fp": "homepagefansup"
   }
 }

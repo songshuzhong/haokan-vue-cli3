@@ -1,0 +1,50 @@
+@import 'variables';
+
+$--font-path: '~element-theme-chalk/src/fonts';
+$ct-font-path: '~wb-creative-tools/src/assets/fonts';
+
+$font-size: $sf-font-size;
+
+$brand-primary: $sf-brand-primary;
+$brand-primary-light: $sf-brand-primary-light;
+$brand-primary-dark: $sf-brand-primary-dark;
+
+$--color-primary: $sf-brand-primary;
+
+$--color-success: $sf-brand-success;
+$--color-warning: $sf-brand-warning;
+$--color-danger: $sf-brand-danger;
+$--color-info: $sf-brand-info;
+
+$brand-success: $sf-brand-success;
+$brand-warning: $sf-brand-warning;
+$brand-danger: $sf-brand-danger;
+$brand-info: $sf-brand-danger;
+
+$text-color: $sf-text-color;
+$text-color-disabled: $sf-text-color-disabled;
+$text-color-tip: $sf-text-color-tip;
+
+$border-color-base: $sf-border-color-base;
+
+$link-text-color: $sf-link-text-color;
+$link-text-hover-color: $sf-link-text-hover-color;
+$link-text-active-color: $sf-link-text-active-color;
+$link-text-focus-color: $sf-link-text-focus-color;
+$link-text-visited-color: $sf-link-text-visited-color;
+$link-text-color-secondary: $sf-link-text-color-secondary;
+
+$link-text-decoration: $sf-link-text-decoration;
+
+$table-border-color: $sf-table-border-color;
+$table-header--fill-color: $sf-table-header--fill-color;
+$--table-header-background-color: $sf-table-header-background-color;
+$--table-border-color: $sf-table-border-color;
+
+$select-option-hover-background: $sf-select-option-hover-background;
+
+$input-height: $sf-input-height;
+$input-label-color: $sf-input-label-color;
+
+$button-color: $sf-button-color;
+$button-primary-color: $sf-button-primary-color;

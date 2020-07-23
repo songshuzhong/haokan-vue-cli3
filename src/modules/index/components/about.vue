@@ -1,49 +1,59 @@
 <template>
-  <div class="ft-extension-wrapper">
-    <pie :width="150" :r="60" :stroke-width="30" :dataSource="age" />
-    <arch :value="1" :title="'人群定向'" />
-    <img v-webp="empty" />
-    <img v-webp="d" />
-    <img v-webp="c" />
-    <router-link to="/">Home</router-link>
+  <div>
+    <sfc-async-cascader />
   </div>
+  <!--
+    <coupon />
+    <img
+      v-for="index in 40"
+      :key="index"
+      class="ft-empty"
+      v-webp:src="require(`~assets/imgs/img-empty0.png`)"
+    />-->
 </template>
 
 <script>
-import Pie from '~components/pie'
-import Arch from '~components/arch'
-import empty from '~assets/imgs/img-empty.png'
-import d from '~assets/imgs/0.gif'
-import c from '~assets/imgs/cherry.jpg'
-
 export default {
   name: 'About',
-  components: {
-    Pie,
-    Arch,
-  },
   data() {
     return {
-      age: [],
-      empty,
-      d,
-      c,
+      collector: {},
+      days: {
+        time_interval: 10,
+        limit: 9,
+      },
+      age: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      test: [],
+      link: '',
     }
   },
   mounted() {
-    const { age } = window.$config
-    this.age = age
+    this.run()
+  },
+  methods: {
+    run() {
+      this.age.map(item => this.test.push(item))
+    },
   },
 }
 </script>
 
 <style lang="scss">
+.ft-extension-wrapper {
+  margin: auto;
+  text-align: center;
+}
+.ft-empty {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  background-size: cover;
+}
 .ft-coupon-details {
   color: #f00;
   color: #0f0;
   color: #00f;
 }
-
 circle {
   transition: r ease-in 0.25s, stroke-dasharray ease-in 0.25s;
 }

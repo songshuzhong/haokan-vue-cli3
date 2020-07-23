@@ -3,10 +3,11 @@ const glob = require('glob')
 const fs = require('fs')
 const manifestPlugin = require('webpack-manifest-plugin')
 const PrerenderSpaPlugin = require('prerender-spa-plugin')
-const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 const SupportWebPWebpackPlugin = require('support-webp-webpack-plugin')
-const publicPath = '../'
+const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
+
 const dev = process.env.NODE_ENV !== 'production'
+const publicPath = ''
 const pages = {}
 const rewrites = []
 
@@ -26,7 +27,6 @@ glob.sync('./src/pages/*.js').forEach(entry => {
   } catch (e) {
     pageConfig = {}
   }
-
   pages[filename] = {
     entry,
     template: path.join(__dirname, '/src/template.html'),
@@ -38,7 +38,7 @@ glob.sync('./src/pages/*.js').forEach(entry => {
     skeleton: pageConfig.skeleton || '',
     skeletonStyle: pageConfig.skeletonStyle || '',
     initData: JSON.stringify(pageConfig.initData || {}),
-    icons: pageConfig.icons || [],
+    favicon: pageConfig.icon || '',
     debug: dev
       ? `
        <script src="//cdn.bootcss.com/eruda/1.1.3/eruda.min.js"></script>
@@ -71,17 +71,16 @@ module.exports = {
     plugins: dev
       ? [
           new SupportWebPWebpackPlugin({
-            webpQuality: 40,
+            useCheckScript: false,
           }),
         ]
       : [
           new SupportWebPWebpackPlugin({
-            webpQuality: 40,
+            useCheckScript: false,
           }),
           new PrerenderSpaPlugin({
             staticDir: path.join(__dirname, 'dist'),
             routes: ['/', '/about', '/contact'],
-            indexPath: path.join(__dirname, 'dist', 'data.html'),
             renderer: new Renderer({
               inject: {
                 foo: 'bar',
@@ -101,8 +100,8 @@ module.exports = {
     ])
     config.resolve.alias
       .set('~assets', path.join(__dirname, 'src/assets'))
-      .set('~components', path.join(__dirname, 'src/components'))
       .set('~modules', path.join(__dirname, 'src/modules'))
+      .set('~components', path.join(__dirname, 'src/components'))
   },
   devServer: {
     hot: true,

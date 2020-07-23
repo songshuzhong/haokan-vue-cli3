@@ -1,0 +1,109 @@
+.sc-async-cascader {
+  padding: 10px;
+  border: 1px solid #ebecee;
+  border-radius: 4px;
+}
+.sc-async-cascader__header {
+}
+.sc-async-cascader__body {
+  display: flex;
+  margin: 10px 0;
+}
+.sc-async-cascader__main {
+  flex: 1;
+  margin-right: 20px;
+  .el-select .el-input {
+    width: 130px;
+  }
+}
+.sc-async-cascader__main__search {
+  position: relative;
+}
+.sc-async-cascader__main__search__result {
+  position: absolute;
+  width: 100%;
+  min-height: 190px;
+  max-height: 256px;
+  margin-top: 10px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border: 1px solid #e6e7e8;
+  box-shadow: 0 2px 4px 0 rgba(56, 67, 78, 0.1);
+  overflow-y: auto;
+  background-color: #fff;
+  z-index: 10;
+  animation: drawer-down 0.5s;
+}
+.sc-async-cascader__main__search__empty {
+  line-height: 34px;
+  text-align: center;
+  font-size: 12px;
+  color: #969faa;
+}
+.sc-async-cascader__main__cascaders {
+  display: flex;
+  height: 276px;
+  margin-top: 10px;
+  border: 1px solid #ebecee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.sc-async-cascader__main__cascader {
+  flex: 1;
+  border-left: 1px solid #ebecee;
+  animation: drawer-out 0.3s;
+  &:first-child {
+    border-left: 0;
+  }
+  &:last-child {
+    border-right: 0;
+  }
+}
+.sc-async-cascader__main__cascader__header {
+  height: 40px;
+  display: block;
+  padding: 0 10px;
+  line-height: 43px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #39434e;
+  background: #f2f3f4;
+}
+.sc-async-cascader__main__cascader__item {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  padding: 0 10px;
+  line-height: 34px;
+  font-size: 12px;
+  color: #39434e;
+  &.active {
+    background-color: #f9f9f9;
+  }
+}
+.sc-async-cascader__main__cascader__item--extend {
+  float: right;
+  font-size: 14px;
+  line-height: 34px;
+}
+.sc-async-cascader__selected {
+  width: 200px;
+}
+.sc-async-cascader__foot {
+}
+@keyframes drawer-out {
+  0% {
+    transform: translate(-10%);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+@keyframes drawer-down {
+  0% {
+    transform: translate3d(0, -10%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
