@@ -4,8 +4,8 @@
       计划系列
     </div>
     <div
-      v-if="trackId !== 'root'"
-      :key="`all-${trackId}`"
+      v-if="trunkId !== 'root'"
+      :key="`all-${trunkId}`"
       class="sc-async-cascader__main__cascader__item"
     >
       <el-checkbox
@@ -17,17 +17,18 @@
       </el-checkbox>
     </div>
     <el-checkbox-group
-      :key="trackId"
+      :key="trunkId"
       v-model="checkedIds"
       @change="onGroupChange"
     >
-      <template v-for="option in iOptions[trackId].children">
+      <template v-for="option in leaves.children">
         <div
           :key="option.id"
           :class="isActive(option.id)"
+          @click="onChecked(option)"
           class="sc-async-cascader__main__cascader__item"
         >
-          <el-checkbox :label="option.id" @change="onChecked(option)">
+          <el-checkbox :label="option.id" @change="onChanged">
             {{ option.name }}
           </el-checkbox>
           <i
@@ -43,6 +44,7 @@
 import ElCheckbox from 'element-ui/lib/checkbox'
 import ElCheckboxGroup from 'element-ui/lib/checkbox-group'
 import 'element-ui/lib/theme-chalk/index.css'
+
 export default {
   name: 'AsyncCascaderItem',
   components: {
@@ -50,11 +52,11 @@ export default {
     ElCheckboxGroup,
   },
   props: {
-    id: {
+    index: {
       type: [String, Number],
       required: true,
     },
-    iOptions: {
+    leaves: {
       type: Object,
       required: true,
     },
@@ -62,18 +64,15 @@ export default {
       type: Array,
       required: true,
     },
-    trackId: {
+    trunkId: {
       type: [String, Number],
-      required: false,
-    },
-    selectedIds: {
-      type: Array,
       required: false,
     },
   },
   data() {
     return {
-      trackIds: [],
+      trunkIds: [],
+      selectedIds: [],
       checkedIds: [],
       checkAll: false,
       isIndeterminate: true,
@@ -82,33 +81,47 @@ export default {
   watch: {
     value: {
       handler(val) {
-        this.trackIds = val
+        this.trunkIds = val
       },
       immediate: true,
     },
-    checkedIds() {
-      this.$emit('change', this.trackId, this.checkedIds)
-    },
   },
   methods: {
-    isActive(id) {
-      return this.trackIds.includes(String(id)) ? 'active' : ''
+    isActive(index) {
+      return this.trunkIds.includes(String(index)) ? 'active' : ''
     },
     onGroupChange(value) {
-      const boxes = this.iOptions[this.trackId].children.length
+      const boxes = this.leaves.children.length
       this.checkAll = value.length === boxes
       this.isIndeterminate = value.length > 0 && value.length < boxes
     },
+    onChanged(isChecked, event) {
+      const id = event.target.defaultValue
+      const value = event.target.labels[0].innerText
+
+      this.$emit('updateCheckedIds', isChecked, { id, value })
+    },
     onChecked(option) {
-      this.$emit('update', this.id, option.id)
+      this.$emit('getMoreLeaves', this.index, option.id, option.children)
     },
     onAllChecked(val) {
+      const checkedIds = []
+      const selectedIds = []
+
+      this.leaves.children.map(option => {
+        checkedIds.push(option.id)
+        selectedIds.push({
+          id: option.id,
+          value: option.name,
+        })
+      })
+
       if (val) {
-        this.checkedIds = this.iOptions[this.trackId].children.map(
-          option => option.id
-        )
+        this.checkedIds = checkedIds
+        this.$emit('updateCheckedIds', true, selectedIds)
       } else {
         this.checkedIds = []
+        this.$emit('updateCheckedIds', false, selectedIds)
       }
       this.isIndeterminate = false
     },

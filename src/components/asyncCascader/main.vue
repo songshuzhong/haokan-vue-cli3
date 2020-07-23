@@ -1,19 +1,18 @@
 <template>
   <div class="sc-async-cascader__main__cascaders" v-loading="isLoading">
     <div
-      v-for="(trackId, key) in trackIds"
+      v-for="(trunkId, key) in trunkIds"
       :key="key"
       class="sc-async-cascader__main__cascader"
     >
       <async-item
-        :key="trackId"
-        v-model="trackIds"
-        :id="key"
-        :track-id="trackId"
-        :i-options="iOptions"
-        :selected-ids="checkedIds[trackId]"
-        @update="update"
-        @change="updateCheckedIds"
+        :key="trunkId"
+        v-model="trunkIds"
+        v-on="$listeners"
+        :index="key"
+        :trunk-id="trunkId"
+        :leaves="findActiveTrunk(trunkId)"
+        @getMoreLeaves="getMoreLeaves"
       />
     </div>
   </div>
@@ -33,68 +32,64 @@ export default {
   },
   data() {
     return {
+      tree: {
+        id: 'root',
+        name: 'root',
+        children: [],
+      },
       isLoading: false,
-      selectedData: [],
-      trackIds: ['root'],
-      checkedIds: {
-        root: [],
-      },
-      iOptions: {
-        root: {
-          children: [],
-        },
-      },
-      initial: false,
+      trunkIds: ['root'],
     }
   },
   mounted() {
-    this.fetchLists('root')
+    this.onTrunkSprouting('root')
   },
   methods: {
-    updateCheckedIds(trackId, checkedIds) {
-      this.checkedIds[trackId] = checkedIds
-    },
-    update(id, trackId) {
-      this.fetchLists(trackId).then(() => {
-        if (
-          this.trackIds.length - 1 === id &&
-          this.iOptions[String(trackId)] &&
-          this.iOptions[String(trackId)].children
-        ) {
-          this.trackIds.push(trackId)
-        } else if (id < this.trackIds.length - 1) {
-          this.trackIds.splice(id + 1, this.trackIds.length, trackId)
-        }
-      })
-    },
-    flat(options, trackId) {
-      options.forEach(option => {
-        const key = String(option.id)
-
-        if (!this.initial) {
-          this.iOptions.root.children.push(option)
-          this.initial = true
+    findActiveTrunk(trunkId) {
+      let trunk = this.tree
+      for (let i = 0; i < this.trunkIds.length; i++) {
+        const pId = this.trunkIds[i]
+        const cId = this.trunkIds[i + 1]
+        if (trunkId === pId) {
+          break
         } else {
-          this.iOptions[trackId].children = options
+          trunk = trunk.children.find(child => child.id === cId)
         }
-        !this.initial && this.iOptions.root.children.push(option)
-        !this.iOptions[key] && (this.iOptions[key] = option)
-      })
-
-      !this.initial && options.length && (this.initial = true)
+      }
+      return trunk
     },
-    fetchLists(trackId) {
+    updateActiveTrunk(trunkId, leaves) {
+      const activeTrunk = this.findActiveTrunk(trunkId)
+
+      activeTrunk.children = leaves
+    },
+    getMoreLeaves(id, trunkId, hasChild) {
+      if (this.trunkIds.length - 1 === id && hasChild) {
+        this.trunkIds.push(trunkId)
+      } else if (id < this.trunkIds.length - 1) {
+        this.trunkIds.splice(id + 1, this.trunkIds.length, trunkId)
+      }
+      this.onTrunkSprouting(trunkId).then(options => {
+        if (options) {
+          this.updateActiveTrunk(trunkId, options)
+        }
+      })
+    },
+    onTrunkSprouting(trunkId) {
+      const activeTrunk = this.findActiveTrunk(trunkId)
       if (
-        this.iOptions[String(trackId)] &&
-        this.iOptions[String(trackId)].children &&
-        this.iOptions[String(trackId)].children.length === 0
+        activeTrunk &&
+        activeTrunk.children &&
+        activeTrunk.children.length === 0
       ) {
         this.isLoading = true
-        return fetch(`http://dev.bendi.ad.weibo.com:3000/api/list/${trackId}`)
+        return fetch(`http://dev.bendi.ad.weibo.com:3000/api/list/${trunkId}`)
           .then(res => res.json())
           .then(options => {
-            options.forEach(option => (this.checkedIds[String(option.id)] = []))
-            this.flat(options, trackId)
+            if (trunkId === 'root') {
+              this.tree.children = options
+            }
+            return options
           })
           .catch(err => console.log(err))
           .finally(() => {

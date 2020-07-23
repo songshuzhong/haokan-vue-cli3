@@ -26,9 +26,12 @@
         <div
           v-for="option in searchResult"
           class="sc-async-cascader__main__cascader__item"
-          @change="onGroupChange"
         >
-          <el-checkbox :label="option.id">
+          <el-checkbox
+            :label="option.id"
+            @change="onChanged"
+            :checked="hasChecked(option.id)"
+          >
             {{ option.name }}
           </el-checkbox>
         </div>
@@ -57,7 +60,12 @@ export default {
     ElCheckbox,
     ElCheckboxGroup,
   },
-  props: {},
+  props: {
+    data: {
+      type: Array,
+      required: false,
+    },
+  },
   data() {
     return {
       checkedIds: [],
@@ -73,6 +81,11 @@ export default {
       },
     }
   },
+  computed: {
+    checkedKeys() {
+      return this.data.map(item => item.id)
+    },
+  },
   watch: {
     searchKey: {
       handler(val) {
@@ -84,13 +97,19 @@ export default {
     },
   },
   methods: {
-    onGroupChange() {
-      this.$emit('search', this.checkedIds)
+    hasChecked(checkedId) {
+      return this.checkedKeys.includes(checkedId)
+    },
+    onChanged(isChecked, event) {
+      const id = event.target.defaultValue
+      const value = event.target.labels[0].innerText
+
+      this.$emit('updateCheckedIds', isChecked, { id, value })
     },
     search() {
       this.isShow = true
       this.isLoading = true
-      fetch('http://dev.bendi.ad.weibo.com:3000/api/list/1')
+      fetch('http://dev.bendi.ad.weibo.com:3000/api/list/root1')
         .then(res => res.json())
         .then(data => {
           this.searchResult = data
