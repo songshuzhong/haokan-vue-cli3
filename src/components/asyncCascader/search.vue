@@ -85,6 +85,7 @@ export default {
       category: '1',
     }
   },
+  inject: ['eventHub'],
   computed: {
     checkedKeys() {
       return this.data.map(item => item.id)
@@ -101,10 +102,10 @@ export default {
     },
   },
   created() {
-    window.addEventListener('sc-async-cascader:change', this.onListener)
+    this.eventHub.$on('sc-async-cascader:change', this.onListener)
   },
   beforeDestroy() {
-    window.removeEventListener('sc-async-cascader:change', this.onListener)
+    this.eventHub.$off('sc-async-cascader:change', this.onListener)
   },
   methods: {
     hasChecked(checkedId) {
@@ -131,7 +132,7 @@ export default {
           this.isLoading = false
         })
     },
-    onListener({ detail }) {
+    onListener(detail) {
       if (detail) {
         this.checkedIds = this.checkedIds.filter(id => id !== detail.id)
       } else {

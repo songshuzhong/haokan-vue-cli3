@@ -36,6 +36,7 @@
   </div>
 </template>
 <script>
+import Vue from 'vue'
 import ElButton from 'element-ui/lib/button'
 import CascaderMain from './main'
 import SearchBar from './search'
@@ -74,12 +75,18 @@ export default {
   },
   data() {
     return {
+      eventHub: new Vue(),
       selectedData: [],
       categories: {
         0: '广告系列',
         1: '广告计划',
         2: '广告创意',
       },
+    }
+  },
+  provide() {
+    return {
+      eventHub: this.eventHub,
     }
   },
   computed: {
@@ -120,20 +127,13 @@ export default {
         }
       }
     },
-    sendEvent(ids) {
-      window.dispatchEvent(
-        new CustomEvent('sc-async-cascader:change', {
-          detail: ids,
-        })
-      )
-    },
     remove(ids) {
       if (ids) {
         this.selectedData = this.selectedData.filter(item => item.id !== ids.id)
       } else {
         this.selectedData = []
       }
-      this.sendEvent(ids)
+      this.eventHub.$emit('sc-async-cascader:change', ids)
     },
     onCancel() {
       this.cancel && this.cancel()

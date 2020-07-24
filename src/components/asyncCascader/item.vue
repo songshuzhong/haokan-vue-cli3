@@ -92,6 +92,7 @@ export default {
       isIndeterminate: true,
     }
   },
+  inject: ['eventHub'],
   watch: {
     value: {
       handler(val) {
@@ -101,10 +102,10 @@ export default {
     },
   },
   created() {
-    window.addEventListener('sc-async-cascader:change', this.onListener)
+    this.eventHub.$on('sc-async-cascader:change', this.onListener)
   },
   beforeDestroy() {
-    window.removeEventListener('sc-async-cascader:change', this.onListener)
+    this.eventHub.$off('sc-async-cascader:change', this.onListener)
   },
   methods: {
     isActive(index) {
@@ -155,7 +156,7 @@ export default {
       }
       this.isIndeterminate = false
     },
-    onListener({ detail }) {
+    onListener(detail) {
       if (detail) {
         this.checkedIds = this.checkedIds.filter(id => id !== detail.id)
         this.isIndeterminate = true

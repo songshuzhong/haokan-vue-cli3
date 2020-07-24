@@ -24,6 +24,8 @@
   position: relative;
 }
 .sc-async-cascader__main__search__result {
+  @include panel-scrollbar();
+
   position: absolute;
   width: 100%;
   min-height: 190px;
