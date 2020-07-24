@@ -125,8 +125,8 @@ export default {
       )
     },
     createTips(week, hour) {
-      let time = hour < 10 ? '0' + hour : hour
-      let weeky = week ? `星期${this.weeks[week - 1]}` : ''
+      const time = hour < 10 ? '0' + hour : hour
+      const weeky = week ? `星期${this.weeks[week - 1]}` : ''
 
       return `${weeky} ${time}:00 - ${time}:59`
     },

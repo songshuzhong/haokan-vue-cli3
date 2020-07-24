@@ -5,8 +5,17 @@
     </div>
     <div class="sc-async-cascader__body">
       <div class="sc-async-cascader__main">
-        <search-bar @updateCheckedIds="updateCheckedIds" :data="selectedData" />
-        <cascader-main @updateCheckedIds="updateCheckedIds" />
+        <search-bar
+          @updateCheckedIds="updateCheckedIds"
+          :data="selectedData"
+          :absence="absence"
+          :categories="categories"
+        />
+        <cascader-main
+          @updateCheckedIds="updateCheckedIds"
+          :absence="absence"
+          :categories="categories"
+        />
       </div>
       <sc-selection-viewer
         class="sc-async-cascader__selected"
@@ -19,7 +28,10 @@
       />
     </div>
     <div class="sc-async-cascader__foot">
-      <el-button>确定</el-button>
+      <el-button @click="onCancel">取消</el-button>
+      <el-button type="primary" plain @click="onSure">
+        确定
+      </el-button>
     </div>
   </div>
 </template>
@@ -44,23 +56,40 @@ export default {
     max: {
       type: Number,
       required: false,
-      default: 20,
+      default: 10,
     },
     title: {
       type: String,
       required: false,
       default: '选择广告计划',
     },
+    cancel: {
+      type: Function,
+      required: false,
+    },
+    ok: {
+      type: Function,
+      required: false,
+    },
   },
   data() {
     return {
       selectedData: [],
+      categories: {
+        0: '广告系列',
+        1: '广告计划',
+        2: '广告创意',
+      },
     }
   },
+  computed: {
+    absence() {
+      return this.max - this.selectedData.length
+    },
+  },
   methods: {
-    joinOnUnique(arr1, arr2) {
+    joinOnUnique(arr1, arr2, hash = {}) {
       const combine = arr1.concat(arr2)
-      const hash = {}
       return combine.reduce((item, next) => {
         if (!hash[next.id]) {
           hash[next.id] = true
@@ -91,12 +120,26 @@ export default {
         }
       }
     },
+    sendEvent(ids) {
+      window.dispatchEvent(
+        new CustomEvent('sc-async-cascader:change', {
+          detail: ids,
+        })
+      )
+    },
     remove(ids) {
       if (ids) {
         this.selectedData = this.selectedData.filter(item => item.id !== ids.id)
       } else {
         this.selectedData = []
       }
+      this.sendEvent(ids)
+    },
+    onCancel() {
+      this.cancel && this.cancel()
+    },
+    onSure() {
+      this.ok && this.ok(this.selectedData)
     },
   },
 }

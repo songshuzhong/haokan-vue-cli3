@@ -2,7 +2,7 @@ async function mockList(pid) {
   await sleep(500)
 
   const children = []
-  for (let i = 1; i < 4; i++) {
+  for (let i = 1; i < 10; i++) {
     if (pid.length < 6) {
       children.push({
         id: pid + i,

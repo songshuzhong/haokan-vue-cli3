@@ -1,26 +1,15 @@
 {
   "defaultSeverity": "warning",
-  "extends": [
-    "tslint:recommended"
-  ],
+  "extends": ["tslint:recommended"],
   "linterOptions": {
-    "exclude": [
-      "node_modules/**"
-    ]
+    "exclude": ["node_modules/**"]
   },
   "rules": {
     "prettier": false,
-    "file-name-casing": [
-      true,
-      "kebab-case"
-    ],
+    "file-name-casing": [true, "kebab-case"],
     "arrow-parens": false,
     "class-name": true,
-    "indent": [
-      true,
-      "spaces",
-      4
-    ],
+    "indent": [true, "spaces", 4],
     "jsdoc-format": true,
     "prefer-const": true,
     "prefer-method-signature": true,
@@ -41,10 +30,8 @@
       "check-finally",
       "check-else"
     ],
-    "no-invalid-this": [
-      true,
-      "check-function-in-method"
-    ],
+    "no-console": false,
+    "no-invalid-this": [false, "check-function-in-method"],
     "no-return-await": true,
     "no-unused-expression": [
       true,
@@ -58,26 +45,12 @@
     "ordered-imports": false,
     "object-literal-shorthand": true,
     "object-literal-sort-keys": false,
-    "one-variable-per-declaration": [
-      true,
-      "ignore-for-loop"
-    ],
+    "one-variable-per-declaration": [true, "ignore-for-loop"],
     "deprecation": true,
     "arrow-return-shorthand": [false, "multiline"],
-    "quotemark": [
-      true,
-      "single",
-      "jsx-double"
-    ],
-    "semicolon": [
-      true,
-      "always",
-      "ignore-interfaces"
-    ],
-    "trailing-comma": [
-      true,
-      "multiline"
-    ],
+    "quotemark": [true, "single", "jsx-double"],
+    "semicolon": [false, "always", "ignore-interfaces"],
+    "trailing-comma": [true, "multiline"],
     "typedef-whitespace": [
       true,
       {
@@ -88,10 +61,7 @@
         "variable-declaration": "nospace"
       }
     ],
-    "variable-name": [
-      true,
-      "ban-keywords"
-    ],
+    "variable-name": [true, "ban-keywords"],
     "whitespace": [
       true,
       "check-branch",

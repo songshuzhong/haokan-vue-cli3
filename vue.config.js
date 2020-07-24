@@ -92,6 +92,17 @@ module.exports = {
   },
   transpileDependencies: ['vue-echarts', 'resize-detector'],
   chainWebpack: config => {
+    const oneOfsMap = config.module.rule('scss').oneOfs.store
+    oneOfsMap.forEach(item => {
+      item
+        .use('sass-resources-loader')
+        .loader('sass-resources-loader')
+        .options({
+          resources: './src/assets/styles/index.scss',
+        })
+        .end()
+    })
+
     config.plugin('manifest').use(manifestPlugin, [
       {
         fileName: 'mf.json',

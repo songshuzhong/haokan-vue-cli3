@@ -22,13 +22,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/styles/mixin.scss';
+body {
+  padding: 8px;
+}
 .report {
   height: 100%;
   padding-bottom: 500px;
-}
-.f-text {
-  @include f-multiline-ellipsis(3);
 }
 .sc-100vh {
   position: relative;

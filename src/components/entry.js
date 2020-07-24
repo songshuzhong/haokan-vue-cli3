@@ -1,5 +1,5 @@
 import MetaInfo from 'vue-meta-info'
-
+import { Plugin } from 'vue-fragment'
 import Loading from 'element-ui/lib/loading'
 
 import Pie from '~components/pie'
@@ -9,7 +9,7 @@ import Uvc from '~components/uvc'
 import Coupon from '~components/coupon'
 import SfcAsyncCascader from '~components/asyncCascader'
 import Exposure from '~components/exposure'
-import DirectLink from '~components/directLink'
+import DirectLink from '~components/direct-link'
 
 const components = {
   Uvc,
@@ -28,6 +28,7 @@ export default {
     componentsName.forEach(i => Vue.component(i, components[i]))
 
     Vue.use(Loading)
+    Vue.use(Plugin)
     Vue.use(MetaInfo)
     Vue.use(Webp)
   },

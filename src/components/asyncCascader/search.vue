@@ -3,7 +3,7 @@
     <el-input
       v-model="searchKey"
       clearable
-      :placeholder="'请输入关键词'"
+      placeholder="请输入名称/ID"
       :validate-event="false"
       @keyup.enter.native="search"
     >
@@ -29,8 +29,9 @@
         >
           <el-checkbox
             :label="option.id"
-            @change="onChanged"
+            :disabled="absence <= 0"
             :checked="hasChecked(option.id)"
+            @change="onChanged"
           >
             {{ option.name }}
           </el-checkbox>
@@ -51,7 +52,7 @@ import ElCheckbox from 'element-ui/lib/checkbox'
 import ElCheckboxGroup from 'element-ui/lib/checkbox-group'
 
 export default {
-  name: 'SearchBar',
+  name: 'Search',
   components: {
     ElButton,
     ElInput,
@@ -61,9 +62,17 @@ export default {
     ElCheckboxGroup,
   },
   props: {
+    absence: {
+      type: Number,
+      required: true,
+    },
     data: {
       type: Array,
       required: false,
+    },
+    categories: {
+      type: Object,
+      required: true,
     },
   },
   data() {
@@ -74,11 +83,6 @@ export default {
       searchKey: '',
       searchResult: [],
       category: '1',
-      categories: {
-        '1': '餐厅号',
-        '2': '订单号',
-        '3': '用户ID',
-      },
     }
   },
   computed: {
@@ -95,6 +99,12 @@ export default {
       },
       immediate: true,
     },
+  },
+  created() {
+    window.addEventListener('sc-async-cascader:change', this.onListener)
+  },
+  beforeDestroy() {
+    window.removeEventListener('sc-async-cascader:change', this.onListener)
   },
   methods: {
     hasChecked(checkedId) {
@@ -120,6 +130,13 @@ export default {
         .finally(() => {
           this.isLoading = false
         })
+    },
+    onListener({ detail }) {
+      if (detail) {
+        this.checkedIds = this.checkedIds.filter(id => id !== detail.id)
+      } else {
+        this.checkedIds = []
+      }
     },
   },
 }

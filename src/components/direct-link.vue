@@ -59,7 +59,9 @@ export default {
       this.isLoading = true
       fetch('http://dev.bendi.ad.weibo.com:3000/api/list/1')
         .then(res => res.json())
-        .then(data => {})
+        .then(data => {
+          console.log(data)
+        })
         .catch(error => console.warn(error))
         .finally(() => {
           this.isLoading = false

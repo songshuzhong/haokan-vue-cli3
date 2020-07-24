@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <fragment>
     <div class="sc-async-cascader__main__cascader__header">
-      计划系列
+      {{ categories[index] }}
     </div>
     <div
       v-if="trunkId !== 'root'"
@@ -19,6 +19,8 @@
     <el-checkbox-group
       :key="trunkId"
       v-model="checkedIds"
+      class="sc-async-cascader__main__cascader__group"
+      :class="index === 0 ? 'taller' : ''"
       @change="onGroupChange"
     >
       <template v-for="option in leaves.children">
@@ -28,7 +30,11 @@
           @click="onChecked(option)"
           class="sc-async-cascader__main__cascader__item"
         >
-          <el-checkbox :label="option.id" @change="onChanged">
+          <el-checkbox
+            :label="option.id"
+            :disabled="absence <= 0"
+            @change="onChanged"
+          >
             {{ option.name }}
           </el-checkbox>
           <i
@@ -38,20 +44,29 @@
         </div>
       </template>
     </el-checkbox-group>
-  </div>
+  </fragment>
 </template>
 <script>
+import notification from 'element-ui/lib/notification'
 import ElCheckbox from 'element-ui/lib/checkbox'
 import ElCheckboxGroup from 'element-ui/lib/checkbox-group'
 import 'element-ui/lib/theme-chalk/index.css'
 
 export default {
-  name: 'AsyncCascaderItem',
+  name: 'Item',
   components: {
     ElCheckbox,
     ElCheckboxGroup,
   },
   props: {
+    absence: {
+      type: Number,
+      required: true,
+    },
+    categories: {
+      type: Object,
+      required: true,
+    },
     index: {
       type: [String, Number],
       required: true,
@@ -72,7 +87,6 @@ export default {
   data() {
     return {
       trunkIds: [],
-      selectedIds: [],
       checkedIds: [],
       checkAll: false,
       isIndeterminate: true,
@@ -85,6 +99,12 @@ export default {
       },
       immediate: true,
     },
+  },
+  created() {
+    window.addEventListener('sc-async-cascader:change', this.onListener)
+  },
+  beforeDestroy() {
+    window.removeEventListener('sc-async-cascader:change', this.onListener)
   },
   methods: {
     isActive(index) {
@@ -107,7 +127,17 @@ export default {
     onAllChecked(val) {
       const checkedIds = []
       const selectedIds = []
+      const absence = this.leaves.children.length - this.checkedIds.length
 
+      if (absence > this.absence) {
+        notification({
+          title: '警告',
+          message: `您还剩 ${this.absence} 个位置可以选择！`,
+          type: 'warning',
+          dangerouslyUseHTMLString: true,
+        })
+        return
+      }
       this.leaves.children.map(option => {
         checkedIds.push(option.id)
         selectedIds.push({
@@ -124,6 +154,15 @@ export default {
         this.$emit('updateCheckedIds', false, selectedIds)
       }
       this.isIndeterminate = false
+    },
+    onListener({ detail }) {
+      if (detail) {
+        this.checkedIds = this.checkedIds.filter(id => id !== detail.id)
+        this.isIndeterminate = true
+      } else {
+        this.checkedIds = []
+        this.checkAll = false
+      }
     },
   },
 }

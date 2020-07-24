@@ -4,6 +4,10 @@
   border-radius: 4px;
 }
 .sc-async-cascader__header {
+  font-weight: bold;
+  font-size: 13px;
+  color: #081422;
+  line-height: 18px;
 }
 .sc-async-cascader__body {
   display: flex;
@@ -69,6 +73,16 @@
   color: #39434e;
   background: #f2f3f4;
 }
+.sc-async-cascader__main__cascader__group {
+  @include panel-scrollbar();
+
+  height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  &.taller {
+    height: 235px;
+  }
+}
 .sc-async-cascader__main__cascader__item {
   position: relative;
   box-sizing: border-box;
@@ -88,8 +102,10 @@
 }
 .sc-async-cascader__selected {
   width: 200px;
+  height: 326px !important;
 }
 .sc-async-cascader__foot {
+  text-align: right;
 }
 @keyframes drawer-out {
   0% {

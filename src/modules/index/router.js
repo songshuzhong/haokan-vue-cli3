@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import DataReport from './data-report.vue'
-import About from './components/about.vue'
+import About from './about.vue'
 
 Vue.use(Router)
 
@@ -16,9 +16,7 @@ export default new Router({
         {
           path: '/contact',
           component: () =>
-            import(
-              /* webpackChunkName: "contact" */ './components/contact.vue'
-            ),
+            import(/* webpackChunkName: "contact" */ './contact.vue'),
         },
       ],
     },

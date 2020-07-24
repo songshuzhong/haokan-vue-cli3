@@ -9,7 +9,9 @@
         :key="trunkId"
         v-model="trunkIds"
         v-on="$listeners"
+        v-bind="$attrs"
         :index="key"
+        :absence="absence"
         :trunk-id="trunkId"
         :leaves="findActiveTrunk(trunkId)"
         @getMoreLeaves="getMoreLeaves"
@@ -29,6 +31,12 @@ export default {
     ElCheckbox,
     ElCheckboxGroup,
     AsyncItem,
+  },
+  props: {
+    absence: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {

@@ -45,7 +45,7 @@ export default {
   },
   data() {
     const self = this
-    const onDayValidator = function(rule, value, cb) {
+    const onDayValidator = (rule, value, cb) => {
       if (!/^([1-9]|10)$/.test(value)) {
         cb(new Error('天数在[1-10]天之间'))
       } else if (self.formData.rate - value > 0) {
@@ -97,7 +97,7 @@ export default {
     error: {
       handler(val) {
         if (!val) {
-          this.$refs['exposureForm'].clearValidate()
+          this.$refs.exposureForm.clearValidate()
         }
       },
       immediate: true,
