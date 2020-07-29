@@ -1,5 +1,5 @@
-async function mockList(pid) {
-  await sleep(500)
+async function mockList(pid, drowsiness) {
+  await sleep(drowsiness)
 
   const children = []
   for (let i = 1; i < 10; i++) {
@@ -35,9 +35,11 @@ module.exports = {
   'GET /contact': async ctx => {
     await ctx.render('contact/index')
   },
-  'GET /api/list/:id': async ctx => {
+  'GET /api/list/:id/:drowsiness': async ctx => {
     const pid = ctx.params.id || '1'
-    let list = await mockList(pid)
+    const drowsiness = ctx.params.drowsiness || 0
+
+    let list = await mockList(pid, drowsiness)
     ctx.restify(list)
   },
 }

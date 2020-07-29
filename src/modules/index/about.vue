@@ -1,44 +1,30 @@
 <template>
   <div>
-    <sfc-async-cascader />
-  </div>
-  <!--
-    <coupon />
+    <!--<coupon />
     <img
-      v-for="index in 40"
+      v-for="index in 10"
       :key="index"
       class="ft-empty"
-      v-webp:src="require(`~assets/imgs/img-empty0.png`)"
+      v-webp:src="require(`~assets/imgs/img-empty${index - 1}.png`)"
     />-->
+    <sfc-async-cascader />
+    <router-link to="/contact"><span>contact</span></router-link>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'About',
   data() {
-    return {
-      collector: {},
-      days: {
-        time_interval: 10,
-        limit: 9,
-      },
-      age: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-      test: [],
-      link: '',
-    }
-  },
-  mounted() {
-    this.run()
-  },
-  methods: {
-    run() {
-      this.age.map(item => this.test.push(item))
-    },
+    return {}
   },
 }
 </script>
 
 <style lang="scss">
+body {
+  background-color: white;
+}
 .ft-extension-wrapper {
   margin: auto;
   text-align: center;

@@ -1,32 +1,6 @@
 <template>
   <div class="f-contact">
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" :height="height" :width="width">
-      <rect
-          height="4"
-          width="300"
-          stroke-width="10"
-          fill="#EEE"
-          stroke-linecap="round"
-          rx="2"
-          ry="2"
-      />
-      <rect
-          height="4"
-          fill="#FE6D00"
-          stroke-width="10"
-          stroke-linecap="round"
-          rx="2"
-          ry="2"
-      >
-        <animate
-          from="0"
-          :to="value"
-          dur="2"
-          attributeName="width"
-          fill="freeze"
-        />
-      </rect>
-    </svg>
+    <router-link to="/"><h2>HOME</h2></router-link>
   </div>
 </template>
 

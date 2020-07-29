@@ -7,9 +7,10 @@ import Arch from '~components/arch'
 import Webp from '~components/webp'
 import Uvc from '~components/uvc'
 import Coupon from '~components/coupon'
-import SfcAsyncCascader from '~components/asyncCascader'
+import SfcAsyncCascader from '~components/async-cascader'
 import Exposure from '~components/exposure'
 import DirectLink from '~components/direct-link'
+import AsyncComponent from '~components/async-component'
 
 const components = {
   Uvc,
@@ -19,6 +20,7 @@ const components = {
   SfcAsyncCascader,
   Exposure,
   DirectLink,
+  AsyncComponent,
 }
 
 const componentsName = Object.keys(components)

@@ -2,9 +2,7 @@ const path = require('path')
 const glob = require('glob')
 const fs = require('fs')
 const manifestPlugin = require('webpack-manifest-plugin')
-const PrerenderSpaPlugin = require('prerender-spa-plugin')
 const SupportWebPWebpackPlugin = require('support-webp-webpack-plugin')
-const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 
 const dev = process.env.NODE_ENV !== 'production'
 const publicPath = ''
@@ -68,27 +66,11 @@ module.exports = {
     resolve: {
       extensions: ['.ts', '.js', '.vue', '.json'],
     },
-    plugins: dev
-      ? [
-          new SupportWebPWebpackPlugin({
-            useCheckScript: false,
-          }),
-        ]
-      : [
-          new SupportWebPWebpackPlugin({
-            useCheckScript: false,
-          }),
-          new PrerenderSpaPlugin({
-            staticDir: path.join(__dirname, 'dist'),
-            routes: ['/', '/about', '/contact'],
-            renderer: new Renderer({
-              inject: {
-                foo: 'bar',
-              },
-              headless: true,
-            }),
-          }),
-        ],
+    plugins: [
+      new SupportWebPWebpackPlugin({
+        useCheckScript: false,
+      }),
+    ],
   },
   transpileDependencies: ['vue-echarts', 'resize-detector'],
   chainWebpack: config => {
@@ -110,6 +92,7 @@ module.exports = {
       },
     ])
     config.resolve.alias
+      .set('~utils', path.join(__dirname, 'src/utils'))
       .set('~assets', path.join(__dirname, 'src/assets'))
       .set('~modules', path.join(__dirname, 'src/modules'))
       .set('~components', path.join(__dirname, 'src/components'))

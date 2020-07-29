@@ -84,7 +84,9 @@ export default {
         activeTrunk.children.length === 0
       ) {
         this.isLoading = true
-        return fetch(`http://dev.bendi.ad.weibo.com:3000/api/list/${trunkId}`)
+        return fetch(
+          `http://dev.bendi.ad.weibo.com:3000/api/list/${trunkId}/5000`
+        )
           .then(res => res.json())
           .then(options => {
             if (trunkId === 'root') {

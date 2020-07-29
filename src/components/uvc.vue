@@ -70,7 +70,8 @@ export default {
 </script>
 <style lang="scss">
 .sc-uvc {
-  position: relative;
+  position: absolute;
+  right: -200px;
   overflow: hidden;
   width: 80px;
   padding: 10px;
@@ -81,6 +82,7 @@ export default {
   z-index: 2020;
   &.fixed {
     position: fixed;
+    right: 0;
     top: 50px;
   }
 }

@@ -40,7 +40,7 @@ import Vue from 'vue'
 import ElButton from 'element-ui/lib/button'
 import CascaderMain from './main'
 import SearchBar from './search'
-import ScSelectionViewer from './viewer'
+import ScSelectionViewer from 'wb-superfans-components/dist/lib/selectionViewer'
 
 import '~assets/styles/components/async-cascader.scss'
 import '~assets/styles/components/viewer.css'
