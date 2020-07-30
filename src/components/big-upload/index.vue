@@ -1,9 +1,12 @@
 <template>
-  <div class="hk-big-upload">
+  <div class="hk-big-upload" v-loading="isMerging">
     <div class="hk-big-upload__head">
-      <input type="file" @change="handleFileChange" />
-      <el-button @click="handleUpload">上传</el-button>
-      <el-button @click="mergeRequest">合并</el-button>
+      <input type="file" @change="onFileChange" />
+      <el-button @click="onUploading">上传</el-button>
+      <el-button @click="onPause">暂停</el-button>
+      <el-button @click="onResume">恢复</el-button>
+      <el-button @click="onDelete">删除</el-button>
+      <el-button @click="sendMergeRequest">合并</el-button>
     </div>
     <div class="hk-big-upload__body">
       <el-table :data="chunkFiles">
@@ -54,9 +57,11 @@ export default {
     ElProgress
   },
   data: () => ({
+    isMerging: false,
     file: null,
     mdHash: '',
     chunkFiles: [],
+    requestList: [],
     fakeUploadPercentAge: 0,
     mdPercentAge: 0,
   }),
@@ -82,16 +87,35 @@ export default {
     this.worker = new Worker('/hash.sw.js')
   },
   methods: {
+    onFileChange(e) {
+      const [file] = e.target.files
+      if (!file) return null
+
+      this.file = file
+      this.chunkFiles = []
+    },
+    onPause() {
+      this.requestList.forEach(xhr => xhr.abort())
+      this.requestList = []
+    },
+    onResume() {},
+    onDelete() {},
     createProgressor(item) {
       return e => {
         item.percentAge = parseInt(String(e.loaded / e.total) * 100)
       }
     },
-    handleFileChange(e) {
-      const [file] = e.target.files
-      if (!file) return null
-
-      this.file = file
+    createMDHash() {
+      return new Promise((resolve, reject) => {
+        this.worker.postMessage({chunkFiles: this.chunkFiles})
+        this.worker.onmessage = e => {
+          const {percentAge, mdHash} = e.data
+          if (percentAge === 100) {
+            resolve(mdHash)
+          }
+          this.mdPercentAge = percentAge
+        }
+      })
     },
     createChunkFile(file, size = SIZE) {
       const chunkFileList = []
@@ -104,7 +128,7 @@ export default {
 
       return chunkFileList
     },
-    mergeRequest() {
+    sendMergeRequest() {
       this.$http(
         `http://dev.bendi.ad.weibo.com:3000/api/merge`,
         'post',
@@ -118,14 +142,34 @@ export default {
         }
       )
     },
-    async handleUpload() {
+    beforeUploading() {
+      return this.$http(
+        `http://dev.bendi.ad.weibo.com:3000/api/verify/${this.mdHash}`,
+        'get',
+      ).then(({data}) => {
+        if (data.msg === '上传成功') {
+          this.fakeUploadPercentAge = 100
+          this.chunkFiles.forEach(item => item.percentAge = 100)
+          this.$notice({
+            type: 'success',
+            title: '通知',
+            message: data.msg
+          })
+          return false
+        } else {
+          return true
+        }
+      })
+    },
+    async onUploading() {
       if (!this.file) {
         this.$notice({
           type: 'error',
-          title: '请先选择文件',
+          title: '警告',
+          message: '请先选择文件',
         })
       }
-      let chunkFiles = this.createChunkFile(this.file)
+      const chunkFiles = this.createChunkFile(this.file)
       this.chunkFiles = chunkFiles.map((chunk, index) => ({
         index,
         chunk,
@@ -136,16 +180,20 @@ export default {
 
       try {
         this.mdHash = await this.createMDHash()
-        await this.onUploading(this.chunkFiles)
+        const avaliable = await this.beforeUploading()
+        if (avaliable) {
+          this.onChunkUploading(this.chunkFiles)
+        }
       } catch (e) {
         console.error(e)
         this.$notice({
           type: 'error',
-          title: e.toString(),
+          title: '警告',
+          message: e.toString(),
         })
       }
     },
-    async onUploading(chunkFiles) {
+    async onChunkUploading(chunkFiles) {
       const promises = chunkFiles
         .map((file, index) => {
           const formData = new FormData()
@@ -158,28 +206,22 @@ export default {
         })
         .map(async (data, index) => {
           return this.$http(
-            'http://dev.bendi.ad.weibo.com:3000/api/upload',
-            'post',
-            data,
-            {},
-            this.createProgressor(this.chunkFiles[index])
-        )
+              'http://dev.bendi.ad.weibo.com:3000/api/upload',
+              'post',
+              data,
+              {},
+              this.createProgressor(this.chunkFiles[index]),
+              this.requestList
+          )
         })
 
       await Promise.all(promises)
+        .then(async () => {
+          this.isMerging = true
+          await this.sendMergeRequest()
+          this.isMerging = false
+        })
     },
-    createMDHash() {
-      return new Promise((resolve, reject) => {
-        this.worker.postMessage({chunkFiles: this.chunkFiles})
-        this.worker.onmessage = e => {
-          const {percentAge, mdHash} = e.data
-          if (percentAge === 100) {
-            resolve(mdHash)
-          }
-          this.mdPercentAge = percentAge
-        }
-      })
-    }
   },
 }
 </script>

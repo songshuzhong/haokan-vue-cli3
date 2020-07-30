@@ -6,6 +6,15 @@ const DIST_DIR = path.resolve(__dirname, './../cache/dist')
 const getFileName = filename => filename.replace(/(.*\/)*([^.]+).*/gi, '$2')
 
 module.exports = {
+    'GET /api/verify/:filehash': async ctx => {
+        const filehash = ctx.params.filehash
+        const fileDir = path.resolve(UPLOAD_DIR, filehash)
+        if (fse.existsSync(fileDir)) {
+            ctx.restify({status: 200, msg: '上传成功'})
+        } else {
+            ctx.restify({status: 200, msg: '允许上传'})
+        }
+    },
     'POST /api/merge': async ctx => {
         const {name, chunkSize, filehash} = ctx.request.body
         const chunkDir = path.resolve(UPLOAD_DIR, filehash)
@@ -28,10 +37,10 @@ module.exports = {
                             end: (index + 1) * chunkSize
                         })
                     )
-                }).then(() => {
-                    fse.rmdir(chunkDir)
                 })
-            }))
+            })).then(() => {
+                fse.rmdir(chunkDir)
+            })
         } catch (e) {
             ctx.restify({status: 200, msg: e})
         }
@@ -42,10 +51,11 @@ module.exports = {
         const {chunk} = ctx.request.files
         const fileDir = path.resolve(UPLOAD_DIR, filehash)
         const hashname = `${filehash}_${index}`
-        if (!fse.existsSync(fileDir)) {
-            await fse.mkdirs(fileDir)
-        }
+
         try {
+            if (!fse.existsSync(fileDir)) {
+                await fse.mkdirs(fileDir)
+            }
             await fse.move(chunk.path, path.resolve(fileDir, hashname))
         } catch (e) {
             console.log(e)
