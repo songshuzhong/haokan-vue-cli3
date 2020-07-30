@@ -1,5 +1,5 @@
 const http = require('http')
-const controller = require('./router/apis')
+const controller = require('./apis')
 const server = http.createServer()
 
 server.on('request', async (req, res) => {
