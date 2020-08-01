@@ -30,4 +30,19 @@ module.exports = {
         let list = await mockList(pid, drowsiness)
         ctx.restify(list)
     },
+    'GET /api/pagelist/:pageIndex/:pageSize': async ctx => {
+        const pageIndex = ctx.params.pageIndex
+        const pageSize = ctx.params.pageSize
+
+        let list = await mockList(pageIndex, 1500)
+        ctx.restify({
+            code: 1000,
+            result: {
+                page: pageIndex,
+                page_size: pageSize,
+                total: 20,
+                list
+            }
+        })
+    }
 }

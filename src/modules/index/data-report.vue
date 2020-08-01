@@ -8,7 +8,8 @@
     />
     <aside class="hk-data-report__aside" :class="size ? 'open' : ''" />
     <main class="hk-data-report__main">
-      <h1 class="hk-data-report__main__title">
+      <search-select :search-url="'http://dev.bendi.ad.weibo.com:3000/api/pagelist/1/1'" />
+      <h1 class="hk-data-report__main__title" v-if="0">
         <router-link to="/about">障碍</router-link>
       </h1>
     </main>
@@ -72,6 +73,7 @@ body {
   height: 100%;
   margin-right: 200px;
   margin-top: 50px;
+  padding: 20px;
   background-color: white;
 }
 .hk-data-report__header {

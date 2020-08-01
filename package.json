@@ -54,6 +54,7 @@
     "@vue/cli-plugin-pwa": "^3.9.0",
     "@vue/cli-plugin-typescript": "^3.9.0",
     "@vue/cli-service": "^3.9.2",
+    "debounce": "^1.2.0",
     "echarts": "^4.6.0",
     "echarts-gl": "^1.1.1",
     "element-theme-chalk": "^2.4.11",

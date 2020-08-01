@@ -224,7 +224,7 @@ export default {
       }))
 
       try {
-        this.mdHash = await this.createMDHash()
+        this.mdHash = await this.createMDHashIdle()
         const avaliable = await this.beforeUploading()
         if (avaliable) {
           this.onChunkUploading(this.chunkFiles)

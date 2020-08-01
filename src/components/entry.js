@@ -11,6 +11,7 @@ import SfcAsyncCascader from '~components/async-cascader'
 import Exposure from '~components/exposure'
 import DirectLink from '~components/direct-link'
 import AsyncComponent from '~components/async-component'
+import SearchSelect from '~components/search-select'
 
 const components = {
   Uvc,
@@ -21,6 +22,7 @@ const components = {
   Exposure,
   DirectLink,
   AsyncComponent,
+  SearchSelect
 }
 
 const componentsName = Object.keys(components)
