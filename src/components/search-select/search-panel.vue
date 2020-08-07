@@ -29,7 +29,7 @@
           class="sc-search-select__panel__result__item"
           @click="onSelect(item)"
         >
-          {{ item.name }}
+          <slot v-bind:data="item" />
         </li>
         <li
           v-if="result.length > 0 && isFetching"

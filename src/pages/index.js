@@ -9,6 +9,7 @@ import '~assets/styles/index.scss'
 Vue.config.productionTip = false
 Vue.prototype.$notice = notification
 Vue.prototype.$http = request
+Vue.prototype.$eventHub = new Vue()
 
 Vue.use(components)
 

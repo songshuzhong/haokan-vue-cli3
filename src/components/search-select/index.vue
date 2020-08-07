@@ -14,7 +14,11 @@
       :search-url="searchUrl"
       :search-params="searchParams"
       @selected="onSelected"
-    />
+    >
+      <template v-slot="{data}">
+        <slot v-bind:data="data" />
+      </template>
+    </search-panel>
   </div>
 </template>
 <script>

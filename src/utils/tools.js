@@ -1,5 +1,4 @@
 const debounce = (fn, time = 500) => {
-    console.log(time)
     let timer
     return function() {
         const context = this
