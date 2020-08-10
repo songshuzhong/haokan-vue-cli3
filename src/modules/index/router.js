@@ -18,27 +18,41 @@ const router = new Router({
     {
       path: '/contact',
       component: () =>
-          import(/* webpackChunkName: "contact" */ './contact.vue'),
+        import(/* webpackChunkName: "contact" */ './contact.vue'),
     },
     {
       path: '/about',
       component: About,
       meta: {
-        title: 'About'
-      }
+        title: 'About',
+      },
     },
     {
       path: '/upload',
-      component: () => import(/* webpackChunkName: "upload" */ '../../components/big-upload/index'),
+      component: () =>
+        import(
+          /* webpackChunkName: "upload" */ '../../components/big-upload/index'
+        ),
       mete: {
-        title: 'upload'
-      }
-    }
+        title: 'upload',
+      },
+    },
+    {
+      path: '/mis',
+      component: () =>
+        import(/* webpackChunkName: "mis" */ '~modules/index/mis'),
+      mete: {
+        title: 'mis',
+      },
+    },
   ],
 })
 
-router.beforeEach((to, from , next) => {
-  routerMask = Loading.service({fullscreen: true, customClass: 'hk-router-loading'})
+router.beforeEach((to, from, next) => {
+  routerMask = Loading.service({
+    fullscreen: true,
+    customClass: 'hk-router-loading',
+  })
   next()
 })
 
