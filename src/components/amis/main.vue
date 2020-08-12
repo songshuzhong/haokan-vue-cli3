@@ -1,7 +1,7 @@
 <template>
   <el-main>
-    <template v-for="(control, index) in controls">
-      <component :is="control.renderer" :key="index" v-bind="control" />
+    <template v-for="(item, index) in body">
+      <component :is="item.renderer" :key="index" v-bind="item" />
     </template>
   </el-main>
 </template>
@@ -15,7 +15,7 @@ export default {
     ElMain,
   },
   props: {
-    controls: {
+    body: {
       type: Array,
       required: true,
     },

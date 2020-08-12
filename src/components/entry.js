@@ -20,10 +20,11 @@ import MisButton from '~components/amis/button'
 import MisForm from '~components/amis/form'
 import MisLayout from '~components/amis/layout'
 import MisMain from '~components/amis/main'
+import MisAside from '~components/amis/aside'
+import MisTree from '~components/amis/tree'
 
 import MisContainer from 'element-ui/lib/container'
 import MisHeader from 'element-ui/lib/header'
-import MisAside from 'element-ui/lib/aside'
 import MisFooter from 'element-ui/lib/footer'
 
 import MisFormItem from 'element-ui/lib/form-item'
@@ -56,6 +57,7 @@ const components = {
   MisForm,
   MisButton,
   MisDatepicker,
+  MisTree,
 }
 
 const componentsName = Object.keys(components)

@@ -1,26 +1,18 @@
 <template>
-  <el-container>
+  <el-aside>
     <template v-for="(item, index) in body">
       <component :is="item.renderer" :key="index" v-bind="item" />
     </template>
-  </el-container>
+  </el-aside>
 </template>
 
 <script>
-import ElContainer from 'element-ui/lib/container'
-import ElHeader from 'element-ui/lib/header'
 import ElAside from 'element-ui/lib/aside'
-import ElMain from 'element-ui/lib/main'
-import ElFooter from 'element-ui/lib/footer'
 
 export default {
-  name: 'MisLayout',
+  name: 'MisAside',
   components: {
-    ElContainer,
-    ElHeader,
-    ElMain,
     ElAside,
-    ElFooter,
   },
   props: {
     body: {
