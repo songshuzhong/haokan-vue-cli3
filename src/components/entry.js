@@ -18,6 +18,13 @@ import MisCheckbox from '~components/amis/checkbox'
 import MisRadio from '~components/amis/radio'
 import MisButton from '~components/amis/button'
 import MisForm from '~components/amis/form'
+import MisLayout from '~components/amis/layout'
+import MisMain from '~components/amis/main'
+
+import MisContainer from 'element-ui/lib/container'
+import MisHeader from 'element-ui/lib/header'
+import MisAside from 'element-ui/lib/aside'
+import MisFooter from 'element-ui/lib/footer'
 
 import MisFormItem from 'element-ui/lib/form-item'
 import MisSwitch from 'element-ui/lib/switch'
@@ -33,6 +40,12 @@ const components = {
   DirectLink,
   AsyncComponent,
   SearchSelect,
+  MisContainer,
+  MisHeader,
+  MisAside,
+  MisMain,
+  MisFooter,
+  MisLayout,
   MisInput,
   MisField,
   MisSelect,
