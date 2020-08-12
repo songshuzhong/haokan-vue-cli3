@@ -16,7 +16,10 @@ import MisField from '~components/amis/field'
 import MisSelect from '~components/amis/select'
 import MisCheckbox from '~components/amis/checkbox'
 import MisRadio from '~components/amis/radio'
+import MisButton from '~components/amis/button'
 
+import MisForm from '~components/amis/form'
+import MisFormItem from 'element-ui/lib/form-item'
 import MisSwitch from 'element-ui/lib/switch'
 
 import MisInput from 'element-ui/lib/input'
@@ -36,6 +39,9 @@ const components = {
   MisCheckbox,
   MisRadio,
   MisSwitch,
+  MisFormItem,
+  MisForm,
+  MisButton,
 }
 
 const componentsName = Object.keys(components)

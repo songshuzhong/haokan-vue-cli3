@@ -1,16 +1,22 @@
 <template>
-  <div class="mis-field">
+  <mis-form-item
+    v-if="iVisible"
+    :label="field.label"
+    :prop="field.name"
+    :class="field.className"
+    :rules="field.rules"
+  >
     <component
-      v-bind="field.props"
-      v-if="iVisible"
+      v-bind="field"
       :is="field.type"
-      :value="iValue"
       :name="field.name"
+      :value="iValue"
       :disabled="iDisabled"
       @input="onInput($event)"
     />
-  </div>
+  </mis-form-item>
 </template>
+
 <script>
 export default {
   name: 'MisField',
@@ -23,13 +29,11 @@ export default {
   data() {
     return {
       iValue: '',
-      iLoading: false,
       iVisible: true,
       iDisabled: false,
-      store: {},
+      iLoading: false,
     }
   },
-  inject: ['eventHub'],
   watch: {
     iVisible: {
       handler(val) {
@@ -37,6 +41,7 @@ export default {
           this.iValue = ''
           this.eventHub.$emit('mis-field:delete', this.field.name)
         } else {
+          this.iValue = this.field.value
           this.eventHub.$emit('mis-field:change', this.field.name, this.iValue)
         }
       },
@@ -50,7 +55,9 @@ export default {
       },
     },
   },
+  inject: ['eventHub'],
   mounted() {
+    this.iValue = this.field.value
     this.eventHub.$emit('mis-field:change', this.field.name, this.iValue)
     this.eventHub.$on('mis-store:change', this.onStoreChange)
     if (this.field.api) {

@@ -6,7 +6,7 @@
       :label="option.value"
       @change="onChange"
     >
-      {{ option.label }}
+      {{ option.text }}
     </el-radio>
   </el-radio-group>
 </template>

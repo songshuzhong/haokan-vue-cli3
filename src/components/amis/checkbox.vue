@@ -6,7 +6,7 @@
       :label="option.value"
       @change="onSelect"
     >
-      {{ option.label }}
+      {{ option.text }}
     </el-checkbox>
   </el-checkbox-group>
 </template>

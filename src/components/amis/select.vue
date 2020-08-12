@@ -10,7 +10,7 @@
     <el-option
       v-for="option in options"
       :key="option.value"
-      :label="option.label"
+      :label="option.test"
       :value="option.value"
       :disabled="option.disabled"
     >
