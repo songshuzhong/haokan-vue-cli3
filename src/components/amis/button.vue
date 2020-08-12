@@ -8,6 +8,7 @@
     :disabled="disabled"
     :icon="icon"
     :nativeType="nativeType"
+    @click="onClick"
   >
     {{ text }}
   </el-button>
@@ -21,6 +22,10 @@ export default {
     ElButton,
   },
   props: {
+    action: {
+      type: Function,
+      required: true,
+    },
     text: {
       type: String,
       required: true,
@@ -56,6 +61,11 @@ export default {
     nativeType: {
       type: String,
       required: false,
+    },
+  },
+  methods: {
+    onClick() {
+      this.action()
     },
   },
 }

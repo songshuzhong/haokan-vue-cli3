@@ -17,11 +17,11 @@ import MisSelect from '~components/amis/select'
 import MisCheckbox from '~components/amis/checkbox'
 import MisRadio from '~components/amis/radio'
 import MisButton from '~components/amis/button'
-
 import MisForm from '~components/amis/form'
+
 import MisFormItem from 'element-ui/lib/form-item'
 import MisSwitch from 'element-ui/lib/switch'
-
+import MisDatepicker from 'element-ui/lib/date-picker'
 import MisInput from 'element-ui/lib/input'
 
 const components = {
@@ -42,6 +42,7 @@ const components = {
   MisFormItem,
   MisForm,
   MisButton,
+  MisDatepicker,
 }
 
 const componentsName = Object.keys(components)

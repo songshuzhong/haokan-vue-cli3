@@ -1,10 +1,10 @@
 const json = [
   {
-    type: 'mis-form',
-    api: 'http://dev.bendi.ad.weibo.com:3000/api/list/12/3000',
+    renderer: 'mis-form',
+    api: 'http://dev.bendi.ad.weibo.com:3000/api/upload',
     controls: [
       {
-        type: 'mis-input',
+        renderer: 'mis-input',
         name: 'email',
         label: '邮箱',
         value: '',
@@ -18,17 +18,14 @@ const json = [
         ],
       },
       {
-        type: 'mis-input',
+        renderer: 'mis-input',
         name: 'age',
         label: '年龄',
         value: '',
-        rules: [
-          { required: true, message: '年龄不能为空' },
-          { type: 'number', message: '年龄必须为数字值' },
-        ],
+        rules: [{ required: true, message: '年龄不能为空' }],
       },
       {
-        type: 'mis-input',
+        renderer: 'mis-input',
         name: 'input',
         label: 'input',
         value: 'mis',
@@ -39,7 +36,7 @@ const json = [
         visibleOn: 'switchs == true',
       },
       {
-        type: 'mis-select',
+        renderer: 'mis-select',
         name: 'select',
         label: '选择框',
         disabledOn: 'switchs == false',
@@ -59,8 +56,14 @@ const json = [
         ],
       },
       {
-        type: 'mis-checkbox',
+        renderer: 'mis-datepicker',
+        name: 'date',
+        label: '日期',
+      },
+      {
+        renderer: 'mis-checkbox',
         name: 'checkbox',
+        label: '主食',
         options: [
           {
             value: '1',
@@ -73,29 +76,29 @@ const json = [
         ],
       },
       {
-        type: 'mis-radio',
+        renderer: 'mis-radio',
         name: 'radio',
+        label: '餐具',
         options: [
           {
             value: '1',
-            text: '龙须面',
+            text: '需要',
           },
           {
             value: '2',
-            text: '北京烤鸭',
+            text: '不需要',
           },
         ],
       },
       {
-        type: 'mis-switch',
+        renderer: 'mis-switch',
         name: 'switchs',
-        label: '开关',
+        label: '配送',
         value: false,
       },
       {
-        type: 'mis-button',
+        renderer: 'mis-button',
         text: '按钮',
-        loading: true,
       },
     ],
   },

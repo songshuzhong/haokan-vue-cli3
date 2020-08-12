@@ -1,30 +1,35 @@
 <template>
-  <div>
-    <div v-for="(item, index) in schema">
-      <component v-bind="item" :is="item.type" :key="index" />
-    </div>
+  <div class="mis">
+    <component
+      v-for="(item, index) in schema"
+      v-bind="item"
+      :is="item.renderer"
+      :key="index"
+      @input="onInput"
+    />
   </div>
 </template>
 <script>
 import Vue from 'vue'
-import mixins from '~components/amis/mixin'
 import schema from '~components/amis/schema'
-const store = {}
+const eventHub = new Vue()
+
+eventHub.store = {}
 
 export default {
   name: 'MIS',
   data() {
     return {
-      eventHub: new Vue(),
-      store,
       schema,
     }
   },
-  mixins: [mixins],
   provide() {
     return {
-      eventHub: this.eventHub,
+      eventHub,
     }
+  },
+  methods: {
+    onInput(value) {},
   },
 }
 </script>

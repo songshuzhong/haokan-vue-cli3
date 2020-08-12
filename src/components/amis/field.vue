@@ -8,10 +8,11 @@
   >
     <component
       v-bind="field"
-      :is="field.type"
+      :is="field.renderer"
       :name="field.name"
       :value="iValue"
       :disabled="iDisabled"
+      :action="action"
       @input="onInput($event)"
     />
   </mis-form-item>
@@ -25,13 +26,16 @@ export default {
       type: Object,
       required: true,
     },
+    action: {
+      type: Function,
+      required: true,
+    },
   },
   data() {
     return {
       iValue: '',
       iVisible: true,
       iDisabled: false,
-      iLoading: false,
     }
   },
   watch: {
@@ -60,23 +64,6 @@ export default {
     this.iValue = this.field.value
     this.eventHub.$emit('mis-field:change', this.field.name, this.iValue)
     this.eventHub.$on('mis-store:change', this.onStoreChange)
-    if (this.field.api) {
-      this.iLoading = true
-      this.$http(this.field.api, 'get')
-        .then(({ data }) => {
-          console.log(data)
-        })
-        .catch(e => {
-          this.$notice({
-            type: 'error',
-            title: '警告',
-            message: e.toString(),
-          })
-        })
-        .finally(() => {
-          this.iLoading = false
-        })
-    }
   },
   methods: {
     onInput(value) {
