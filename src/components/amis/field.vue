@@ -1,5 +1,5 @@
 <template>
-  <mis-form-item
+  <el-form-item
     v-if="iVisible"
     :label="field.label"
     :prop="field.name"
@@ -15,12 +15,16 @@
       :action="action"
       @input="onInput($event)"
     />
-  </mis-form-item>
+  </el-form-item>
 </template>
 
 <script>
+import ElFormItem from 'element-ui/lib/form-item'
 export default {
   name: 'MisField',
+  components: {
+    ElFormItem,
+  },
   props: {
     field: {
       type: Object,

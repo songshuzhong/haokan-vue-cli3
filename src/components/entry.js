@@ -22,12 +22,14 @@ import MisLayout from '~components/amis/layout'
 import MisMain from '~components/amis/main'
 import MisAside from '~components/amis/aside'
 import MisTree from '~components/amis/tree'
+import MisMenu from '~components/amis/menu'
+import MisMenuItem from '~components/amis/menu-item'
+import MisMenuItemGroup from '~components/amis/menu-item-group'
 
 import MisContainer from 'element-ui/lib/container'
 import MisHeader from 'element-ui/lib/header'
 import MisFooter from 'element-ui/lib/footer'
 
-import MisFormItem from 'element-ui/lib/form-item'
 import MisSwitch from 'element-ui/lib/switch'
 import MisDatepicker from 'element-ui/lib/date-picker'
 import MisInput from 'element-ui/lib/input'
@@ -53,11 +55,13 @@ const components = {
   MisCheckbox,
   MisRadio,
   MisSwitch,
-  MisFormItem,
   MisForm,
   MisButton,
   MisDatepicker,
   MisTree,
+  MisMenu,
+  MisMenuItem,
+  MisMenuItemGroup,
 }
 
 const componentsName = Object.keys(components)

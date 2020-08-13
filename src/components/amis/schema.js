@@ -70,6 +70,41 @@ const json = [
               },
             ],
           },
+          {
+            renderer: 'mis-menu',
+            name: 'menu',
+            label: '菜单',
+            icon: 'el-icon-location',
+            body: [
+              {
+                renderer: 'mis-menu-item',
+                name: 'option1',
+                label: '选项一',
+              },
+              {
+                renderer: 'mis-menu-item',
+                name: 'option2',
+                label: '选项二',
+              },
+              {
+                renderer: 'mis-menu-item-group',
+                name: 'group1',
+                label: '分组选项一',
+                body: [
+                  {
+                    renderer: 'mis-menu-item',
+                    name: 'group1option1',
+                    label: '分组选项一',
+                  },
+                  {
+                    renderer: 'mis-menu-item',
+                    name: 'group1option2',
+                    label: '分组选项二',
+                  },
+                ],
+              },
+            ],
+          },
         ],
       },
       {
@@ -77,7 +112,7 @@ const json = [
         body: [
           {
             renderer: 'mis-form',
-            api: 'http://dev.bendi.ad.weibo.com:3000/api/upload',
+            api: 'http://dev.bendi.ad.weibo.com:3000/api/mis',
             controls: [
               {
                 renderer: 'mis-input',
