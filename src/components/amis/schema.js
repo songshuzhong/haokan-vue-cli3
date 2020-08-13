@@ -1,10 +1,36 @@
 const json = [
   {
-    renderer: 'mis-layout',
+    renderer: 'mis-menu',
+    name: 'menu',
+    label: '菜单',
+    icon: 'el-icon-location',
+    mode: 'horizontal',
     body: [
       {
-        renderer: 'mis-header',
+        renderer: 'mis-menu-item',
+        name: 'option1',
+        label: '选项一',
       },
+      {
+        renderer: 'mis-menu-item',
+        name: 'option2',
+        label: '选项二',
+      },
+      {
+        renderer: 'mis-menu-item',
+        name: 'group1option1',
+        label: '分组选项一',
+      },
+      {
+        renderer: 'mis-menu-item',
+        name: 'group1option2',
+        label: '分组选项二',
+      },
+    ],
+  },
+  {
+    renderer: 'mis-layout',
+    body: [
       {
         renderer: 'mis-aside',
         body: [
@@ -65,41 +91,6 @@ const json = [
                         label: '三级 3-2-1',
                       },
                     ],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            renderer: 'mis-menu',
-            name: 'menu',
-            label: '菜单',
-            icon: 'el-icon-location',
-            body: [
-              {
-                renderer: 'mis-menu-item',
-                name: 'option1',
-                label: '选项一',
-              },
-              {
-                renderer: 'mis-menu-item',
-                name: 'option2',
-                label: '选项二',
-              },
-              {
-                renderer: 'mis-menu-item-group',
-                name: 'group1',
-                label: '分组选项一',
-                body: [
-                  {
-                    renderer: 'mis-menu-item',
-                    name: 'group1option1',
-                    label: '分组选项一',
-                  },
-                  {
-                    renderer: 'mis-menu-item',
-                    name: 'group1option2',
-                    label: '分组选项二',
                   },
                 ],
               },

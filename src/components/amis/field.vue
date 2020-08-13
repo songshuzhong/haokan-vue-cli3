@@ -47,10 +47,10 @@ export default {
       handler(val) {
         if (!val) {
           this.iValue = ''
-          this.eventHub.$emit('mis-field:delete', this.field.name)
+          this.$eventHub.$emit('mis-field:delete', this.field.name)
         } else {
           this.iValue = this.field.value
-          this.eventHub.$emit('mis-field:change', this.field.name, this.iValue)
+          this.$eventHub.$emit('mis-field:change', this.field.name, this.iValue)
         }
       },
     },
@@ -58,21 +58,20 @@ export default {
       handler(val) {
         if (val) {
           this.iValue = ''
-          this.eventHub.$emit('mis-field:change', this.field.name, '')
+          this.$eventHub.$emit('mis-field:change', this.field.name, '')
         }
       },
     },
   },
-  inject: ['eventHub'],
   mounted() {
     this.iValue = this.field.value
-    this.eventHub.$emit('mis-field:change', this.field.name, this.iValue)
-    this.eventHub.$on('mis-store:change', this.onStoreChange)
+    this.$eventHub.$emit('mis-field:change', this.field.name, this.iValue)
+    this.$eventHub.$on('mis-store:change', this.onStoreChange)
   },
   methods: {
     onInput(value) {
       this.iValue = value
-      this.eventHub.$emit('mis-field:change', this.field.name, value)
+      this.$eventHub.$emit('mis-field:change', this.field.name, value)
     },
     onStoreChange(store) {
       this.store = store

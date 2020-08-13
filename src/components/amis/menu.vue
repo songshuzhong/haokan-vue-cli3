@@ -1,5 +1,5 @@
 <template>
-  <el-menu>
+  <el-menu :mode="mode">
     <template v-if="label" slot="title">
       <i :class="icon" />
       {{ label }}
@@ -41,6 +41,11 @@ export default {
     path: {
       type: String,
       required: false,
+    },
+    mode: {
+      type: String,
+      required: false,
+      default: 'horizontal'
     },
     body: {
       type: Array,

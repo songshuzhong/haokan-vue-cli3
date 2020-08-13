@@ -45,10 +45,9 @@ export default {
       }, {}),
     }
   },
-  inject: ['eventHub'],
   mounted() {
-    this.eventHub.$on('mis-field:change', this.onFieldChange)
-    this.eventHub.$on('mis-field:delete', this.onFieldDelete)
+    this.$eventHub.$on('mis-field:change', this.onFieldChange)
+    this.$eventHub.$on('mis-field:delete', this.onFieldDelete)
   },
   methods: {
     onBeforeSubmit() {
@@ -60,13 +59,12 @@ export default {
     },
     onFieldChange(name, value) {
       name && (this.store[name] = value)
-      this.eventHub.$emit('mis-store:change', this.store)
+      this.$eventHub.$emit('mis-store:change', this.store)
     },
     onFieldDelete(name) {
       delete this.store[name]
-      this.eventHub.$emit('mis-store:change', this.store)
+      this.$eventHub.$emit('mis-store:change', this.store)
     },
-    sendJsonData() {},
     sendFormData() {
       if (this.api) {
         const formData = new FormData()

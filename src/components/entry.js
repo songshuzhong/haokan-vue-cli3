@@ -2,14 +2,14 @@ import MetaInfo from 'vue-meta-info'
 import { Plugin } from 'vue-fragment'
 import Loading from 'element-ui/lib/loading'
 
-import Pie from '~components/pie'
-import Arch from '~components/arch'
+import Pie from '~components/fans/pie'
+import Arch from '~components/fans/arch'
 import Webp from '~components/webp'
-import Coupon from '~components/coupon'
-import SfcAsyncCascader from '~components/async-cascader'
-import Exposure from '~components/exposure'
-import DirectLink from '~components/direct-link'
-import AsyncComponent from '~components/async-component'
+import Coupon from '~components/fans/coupon'
+// import SfcAsyncCascader from '~components/async-cascader'
+import Exposure from '~components/fans/exposure'
+import DirectLink from '~components/fans/direct-link'
+// import AsyncComponent from '~components/async-component'
 import SearchSelect from '~components/search-select'
 
 import MisField from '~components/amis/field'
@@ -25,23 +25,20 @@ import MisTree from '~components/amis/tree'
 import MisMenu from '~components/amis/menu'
 import MisMenuItem from '~components/amis/menu-item'
 import MisMenuItemGroup from '~components/amis/menu-item-group'
+import MisHeader from '~components/amis/header'
 
+import MisInput from 'element-ui/lib/input'
 import MisContainer from 'element-ui/lib/container'
-import MisHeader from 'element-ui/lib/header'
 import MisFooter from 'element-ui/lib/footer'
-
 import MisSwitch from 'element-ui/lib/switch'
 import MisDatepicker from 'element-ui/lib/date-picker'
-import MisInput from 'element-ui/lib/input'
 
 const components = {
   Pie,
   Arch,
   Coupon,
-  SfcAsyncCascader,
   Exposure,
   DirectLink,
-  AsyncComponent,
   SearchSelect,
   MisContainer,
   MisHeader,
@@ -49,7 +46,6 @@ const components = {
   MisMain,
   MisFooter,
   MisLayout,
-  MisInput,
   MisField,
   MisSelect,
   MisCheckbox,
@@ -62,6 +58,7 @@ const components = {
   MisMenu,
   MisMenuItem,
   MisMenuItemGroup,
+  MisInput,
 }
 
 const componentsName = Object.keys(components)

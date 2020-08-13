@@ -10,11 +10,9 @@
   </div>
 </template>
 <script>
-import Vue from 'vue'
 import schema from '~components/amis/schema'
-const eventHub = new Vue()
 
-eventHub.store = {}
+import 'element-theme-chalk/lib/index.css'
 
 export default {
   name: 'MIS',
@@ -23,13 +21,10 @@ export default {
       schema,
     }
   },
-  provide() {
-    return {
-      eventHub,
-    }
-  },
   methods: {
-    onInput(value) {},
+    onInput(value) {
+      console.log(value)
+    },
   },
 }
 </script>
