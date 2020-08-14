@@ -27,6 +27,10 @@ export default {
       type: String,
       required: false,
     },
+    name: {
+      type: String,
+      required: false,
+    },
     controls: {
       type: Array,
       required: false,
@@ -44,6 +48,14 @@ export default {
         return total
       }, {}),
     }
+  },
+  watch: {
+    store: {
+      handler(val) {
+        this.$eventHub.$emit('mis-store:update', this.name, val)
+      },
+      deep: true,
+    },
   },
   mounted() {
     this.$eventHub.$on('mis-field:change', this.onFieldChange)

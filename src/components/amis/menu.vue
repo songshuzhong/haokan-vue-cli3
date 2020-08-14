@@ -1,5 +1,5 @@
 <template>
-  <el-menu :mode="mode">
+  <el-menu :mode="mode" @select="onMenuSelect">
     <template v-if="label" slot="title">
       <i :class="icon" />
       {{ label }}
@@ -45,11 +45,16 @@ export default {
     mode: {
       type: String,
       required: false,
-      default: 'horizontal'
+      default: 'horizontal',
     },
     body: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    onMenuSelect(index, path) {
+      this.$eventHub.$emit('mis-store:update', this.name, index)
     },
   },
 }

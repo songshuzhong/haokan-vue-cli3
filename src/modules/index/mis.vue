@@ -19,11 +19,18 @@ export default {
   data() {
     return {
       schema,
+      store: {},
     }
+  },
+  mounted() {
+    this.$eventHub.$on('mis-store:update', this.onStoreUpdate)
   },
   methods: {
     onInput(value) {
       console.log(value)
+    },
+    onStoreUpdate(name, value) {
+      this.store[name] = value
     },
   },
 }
