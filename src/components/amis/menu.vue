@@ -1,5 +1,5 @@
 <template>
-  <el-menu :mode="mode" @select="onMenuSelect">
+  <el-menu :mode="mode" @select="onMenuSelect" :default-active="defaultActive">
     <template v-if="label" slot="title">
       <i :class="icon" />
       {{ label }}
@@ -47,6 +47,10 @@ export default {
       required: false,
       default: 'horizontal',
     },
+    defaultActive: {
+      type: String,
+      required: false,
+    },
     body: {
       type: Array,
       required: true,
@@ -54,7 +58,9 @@ export default {
   },
   methods: {
     onMenuSelect(index, path) {
-      this.$eventHub.$emit('mis-store:update', this.name, index)
+      const store = this.$eventHub.store
+      store[this.name] = index
+      this.$eventHub.$emit('mis-store:change', store)
     },
   },
 }

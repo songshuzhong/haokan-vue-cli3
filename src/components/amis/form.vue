@@ -1,6 +1,7 @@
 <template>
   <el-form
     v-loading="iLoading"
+    v-show="iVisible"
     class="mis-form"
     ref="mis-form"
     label-width="80px"
@@ -9,13 +10,18 @@
     <mis-field
       v-for="(field, index) in controls"
       :key="field.renderer + index"
+      :name="field.name"
       :field="field"
+      :visibleOn="field.visibleOn"
+      :disabledOn="field.disabledOn"
       :action="onBeforeSubmit"
     />
   </el-form>
 </template>
 <script>
 import ElForm from 'element-ui/lib/form'
+
+import switches from '~components/amis/switches'
 
 export default {
   name: 'MisForm',
@@ -49,6 +55,7 @@ export default {
       }, {}),
     }
   },
+  mixins: [switches],
   watch: {
     store: {
       handler(val) {

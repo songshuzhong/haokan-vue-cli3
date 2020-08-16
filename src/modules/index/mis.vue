@@ -3,8 +3,10 @@
     <component
       v-for="(item, index) in schema"
       v-bind="item"
-      :is="item.renderer"
       :key="index"
+      :is="item.renderer"
+      :visibleOn="item.visibleOn"
+      :disabledOn="item.disabledOn"
       @input="onInput"
     />
   </div>
@@ -23,6 +25,7 @@ export default {
     }
   },
   mounted() {
+    this.$eventHub.store = this.store
     this.$eventHub.$on('mis-store:update', this.onStoreUpdate)
   },
   methods: {

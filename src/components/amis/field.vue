@@ -20,12 +20,18 @@
 
 <script>
 import ElFormItem from 'element-ui/lib/form-item'
+import switches from '~components/amis/switches'
+
 export default {
   name: 'MisField',
   components: {
     ElFormItem,
   },
   props: {
+    name: {
+      type: String,
+      required: false,
+    },
     field: {
       type: Object,
       required: true,
@@ -35,55 +41,15 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      iValue: '',
-      iVisible: true,
-      iDisabled: false,
-    }
-  },
-  watch: {
-    iVisible: {
-      handler(val) {
-        if (!val) {
-          this.iValue = ''
-          this.$eventHub.$emit('mis-field:delete', this.field.name)
-        } else {
-          this.iValue = this.field.value
-          this.$eventHub.$emit('mis-field:change', this.field.name, this.iValue)
-        }
-      },
-    },
-    iDisabled: {
-      handler(val) {
-        if (val) {
-          this.iValue = ''
-          this.$eventHub.$emit('mis-field:change', this.field.name, '')
-        }
-      },
-    },
-  },
+  mixins: [switches],
   mounted() {
     this.iValue = this.field.value
     this.$eventHub.$emit('mis-field:change', this.field.name, this.iValue)
-    this.$eventHub.$on('mis-store:change', this.onStoreChange)
   },
   methods: {
     onInput(value) {
       this.iValue = value
       this.$eventHub.$emit('mis-field:change', this.field.name, value)
-    },
-    onStoreChange(store) {
-      this.store = store
-      if (this.field.visibleOn) {
-        this.iVisible = this.$onExpressionEval(this.field.visibleOn, this.store)
-      }
-      if (this.field.disabledOn) {
-        this.iDisabled = this.$onExpressionEval(
-          this.field.disabledOn,
-          this.store
-        )
-      }
     },
   },
 }
