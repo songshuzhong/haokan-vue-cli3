@@ -30,6 +30,7 @@ export default {
           this.$eventHub.$emit('mis-field:change', this.name, this.iValue)
         }
       },
+      immediate: true,
     },
     iDisabled: {
       handler(val) {
@@ -39,6 +40,7 @@ export default {
         }
       },
     },
+    immediate: true,
   },
   mounted() {
     this.$eventHub.$on('mis-store:change', this.onStoreChange)

@@ -51,14 +51,23 @@ export default {
       type: String,
       required: false,
     },
+    store: {
+      type: Object,
+      required: true,
+    },
     body: {
       type: Array,
       required: true,
     },
   },
+  mounted() {
+    this.$nextTick(() => {
+      this.onMenuSelect(this.defaultActive)
+    })
+  },
   methods: {
-    onMenuSelect(index, path) {
-      const store = this.$eventHub.store
+    onMenuSelect(index) {
+      const store = this.store
       store[this.name] = index
       this.$eventHub.$emit('mis-store:change', store)
     },

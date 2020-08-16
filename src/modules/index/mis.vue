@@ -5,6 +5,7 @@
       v-bind="item"
       :key="index"
       :is="item.renderer"
+      :store="store"
       :visibleOn="item.visibleOn"
       :disabledOn="item.disabledOn"
       @input="onInput"
@@ -25,7 +26,6 @@ export default {
     }
   },
   mounted() {
-    this.$eventHub.store = this.store
     this.$eventHub.$on('mis-store:update', this.onStoreUpdate)
   },
   methods: {
