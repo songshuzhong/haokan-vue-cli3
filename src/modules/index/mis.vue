@@ -32,8 +32,13 @@ export default {
     onInput(value) {
       console.log(value)
     },
-    onStoreUpdate(name, value) {
-      this.store[name] = value
+    onStoreUpdate(value, name) {
+      for (let key in value) {
+        if (value.hasOwnProperty(key)) {
+          this.store[key] = value[key]
+        }
+      }
+      this.$eventHub.$emit('mis-store:change', this.store)
     },
   },
 }

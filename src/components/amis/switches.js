@@ -47,12 +47,11 @@ export default {
   },
   methods: {
     onStoreChange(store) {
-      this.store = store
       if (this.visibleOn) {
-        this.iVisible = this.$onExpressionEval(this.visibleOn, this.store)
+        this.iVisible = this.$onExpressionEval(this.visibleOn, store)
       }
       if (this.disabledOn) {
-        this.iDisabled = this.$onExpressionEval(this.disabledOn, this.store)
+        this.iDisabled = this.$onExpressionEval(this.disabledOn, store)
       }
     },
   },

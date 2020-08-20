@@ -1,11 +1,11 @@
 <template>
   <el-form
     v-loading="iLoading"
-    v-show="iVisible"
+    v-if="iVisible"
     class="mis-form"
     ref="mis-form"
     label-width="80px"
-    :model="store"
+    :model="formData"
   >
     <mis-field
       v-for="(field, index) in controls"
@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       iLoading: false,
-      store: this.controls.reduce((total, control) => {
+      formData: this.controls.reduce((total, control) => {
         const name = control.name || ''
         const value = control.value || ''
         if (name) {
@@ -55,18 +55,22 @@ export default {
       }, {}),
     }
   },
-  mixins: [switches],
   watch: {
-    store: {
+    formData: {
       handler(val) {
-        this.$eventHub.$emit('mis-store:update', this.name, val)
+        this.$eventHub.$emit('mis-store:update', val, this.name)
       },
+      immediate: true,
       deep: true,
     },
   },
+  mixins: [switches],
   mounted() {
-    this.$eventHub.$on('mis-field:change', this.onFieldChange)
     this.$eventHub.$on('mis-field:delete', this.onFieldDelete)
+    this.$eventHub.$on('mis-field:change', this.onFieldChange)
+    this.$nextTick(() => {
+      this.$eventHub.$emit('mis-store:update', this.formData, this.name)
+    })
   },
   methods: {
     onBeforeSubmit() {
@@ -77,19 +81,19 @@ export default {
       })
     },
     onFieldChange(name, value) {
-      name && (this.store[name] = value)
-      this.$eventHub.$emit('mis-store:change', this.store)
+      name && (this.formData[name] = value)
+      this.$eventHub.$emit('mis-store:update', this.formData)
     },
     onFieldDelete(name) {
-      delete this.store[name]
-      this.$eventHub.$emit('mis-store:change', this.store)
+      delete this.formData[name]
+      this.$eventHub.$emit('mis-store:update', this.formData)
     },
     sendFormData() {
       if (this.api) {
         const formData = new FormData()
-        for (let name in this.store) {
-          if (this.store.hasOwnProperty(name))
-            formData.append(name, this.store[name])
+        for (let name in this.formData) {
+          if (this.formData.hasOwnProperty(name))
+            formData.append(name, this.formData[name])
         }
         this.iLoading = true
         this.$http(this.api, 'post', formData)
