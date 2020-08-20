@@ -32,7 +32,7 @@ export default {
     onInput(value) {
       console.log(value)
     },
-    onStoreUpdate(value, name) {
+    onStoreUpdate(value) {
       for (let key in value) {
         if (value.hasOwnProperty(key)) {
           this.store[key] = value[key]
