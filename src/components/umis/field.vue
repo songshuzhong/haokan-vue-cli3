@@ -20,7 +20,7 @@
 
 <script>
 import ElFormItem from 'element-ui/lib/form-item'
-import switches from '~components/amis/switches'
+import switches from '~components/umis/switches'
 
 export default {
   name: 'MisField',

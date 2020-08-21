@@ -8,9 +8,11 @@
     />
     <aside class="hk-data-report__aside" :class="size ? 'open' : ''" />
     <main class="hk-data-report__main">
-      <search-select :search-url="'http://dev.bendi.ad.weibo.com:3000/api/pagelist/1/1'">
-        <template v-slot="{data}">
-          <h3>{{data.name}}</h3>
+      <search-select
+        :search-url="'http://dev.bendi.ad.weibo.com:3000/api/pagelist/1/1'"
+      >
+        <template v-slot="{ data }">
+          <h3>{{ data.name }}</h3>
         </template>
       </search-select>
       <h1 class="hk-data-report__main__title" v-if="0">

@@ -13,7 +13,7 @@
   </div>
 </template>
 <script>
-import schema from '~components/amis/schema'
+import schema from '~components/umis/schema'
 
 import 'element-theme-chalk/lib/index.css'
 

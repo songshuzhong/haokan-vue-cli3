@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Loading from 'element-ui/lib/loading'
 
-import DataReport from './data-report.vue'
+import Home from './home.vue'
 import About from './about.vue'
 
 Vue.use(Router)
@@ -13,7 +13,7 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      component: DataReport,
+      component: Home,
     },
     {
       path: '/contact',
@@ -38,7 +38,7 @@ const router = new Router({
       },
     },
     {
-      path: '/mis',
+      path: '/umis',
       component: () =>
         import(/* webpackChunkName: "mis" */ '~modules/index/mis'),
       mete: {

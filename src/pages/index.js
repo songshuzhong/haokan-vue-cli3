@@ -6,6 +6,7 @@ import components from '~components/entry'
 import { request } from '~utils/http'
 import { onExpressionEval } from '~utils/tools'
 
+import 'element-theme-chalk/lib/index.css'
 import '~assets/styles/index.scss'
 
 Vue.prototype.$eventHub = new Vue()

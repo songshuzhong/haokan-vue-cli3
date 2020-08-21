@@ -21,7 +21,7 @@
 <script>
 import ElForm from 'element-ui/lib/form'
 
-import switches from '~components/amis/switches'
+import switches from '~components/umis/switches'
 
 export default {
   name: 'MisForm',
