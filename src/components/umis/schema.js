@@ -25,7 +25,7 @@ const json = [
       {
         renderer: 'mis-menu-item',
         name: 'group1option1',
-        label: '分组选项一',
+        label: '栅栏',
       },
       {
         renderer: 'mis-menu-item',
@@ -162,6 +162,42 @@ const json = [
               {
                 renderer: 'mis-button',
                 text: '按钮',
+              },
+            ],
+          },
+          {
+            name: 'grid',
+            renderer: 'mis-grid',
+            gutter: 20,
+            visibleOn: 'menu == "group1option1"',
+            body: [
+              {
+                renderer: 'mis-input',
+                name: 'gridage1',
+                label: '年龄',
+                value: '',
+                rules: [{ required: true, message: '年龄不能为空' }],
+                span: 6,
+              },
+              {
+                renderer: 'mis-input',
+                name: 'gridage2',
+                label: '年龄',
+                value: '',
+                rules: [{ required: true, message: '年龄不能为空' }],
+                span: 12,
+              },
+              {
+                renderer: 'mis-card',
+                name: 'card',
+                body: [
+                  {
+                    renderer: 'mis-switch',
+                    name: 'cardsswitchs',
+                    label: '配送',
+                    value: false,
+                  },
+                ],
               },
             ],
           },

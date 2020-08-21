@@ -26,6 +26,8 @@ import MisMenu from '~components/umis/menu'
 import MisMenuItem from '~components/umis/menu-item'
 import MisMenuItemGroup from '~components/umis/menu-item-group'
 import MisHeader from '~components/umis/header'
+import MisGrid from '~components/umis/grid'
+import MisCard from '~components/umis/card'
 
 import MisInput from 'element-ui/lib/input'
 import MisContainer from 'element-ui/lib/container'
@@ -40,6 +42,8 @@ const components = {
   Exposure,
   DirectLink,
   SearchSelect,
+  MisGrid,
+  MisCard,
   MisContainer,
   MisHeader,
   MisAside,
