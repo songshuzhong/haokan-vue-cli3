@@ -1,5 +1,5 @@
 import MetaInfo from 'vue-meta-info'
-import { Plugin } from 'vue-fragment'
+import { Fragment } from 'vue-fragment'
 import Loading from 'element-ui/lib/loading'
 
 import Pie from '~components/fans/pie'
@@ -27,7 +27,9 @@ import MisMenuItem from '~components/umis/menu-item'
 import MisMenuItemGroup from '~components/umis/menu-item-group'
 import MisHeader from '~components/umis/header'
 import MisGrid from '~components/umis/grid'
-import MisCard from '~components/umis/card'
+import MisCards from '~components/umis/cards'
+import MisAvatar from '~components/umis/avatar'
+import MisHtml from '~components/umis/html'
 
 import MisInput from 'element-ui/lib/input'
 import MisContainer from 'element-ui/lib/container'
@@ -36,6 +38,7 @@ import MisSwitch from 'element-ui/lib/switch'
 import MisDatepicker from 'element-ui/lib/date-picker'
 
 const components = {
+  Fragment,
   Pie,
   Arch,
   Coupon,
@@ -43,7 +46,9 @@ const components = {
   DirectLink,
   SearchSelect,
   MisGrid,
-  MisCard,
+  MisCards,
+  MisAvatar,
+  MisHtml,
   MisContainer,
   MisHeader,
   MisAside,
@@ -72,7 +77,6 @@ export default {
     componentsName.forEach(i => Vue.component(i, components[i]))
 
     Vue.use(Loading)
-    Vue.use(Plugin)
     Vue.use(MetaInfo)
     Vue.use(Webp)
   },

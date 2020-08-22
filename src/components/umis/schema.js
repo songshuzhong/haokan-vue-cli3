@@ -30,7 +30,7 @@ const json = [
       {
         renderer: 'mis-menu-item',
         name: 'group1option2',
-        label: '分组选项二',
+        label: '卡片列表',
       },
     ],
   },
@@ -172,32 +172,35 @@ const json = [
             visibleOn: 'menu == "group1option1"',
             body: [
               {
-                renderer: 'mis-input',
-                name: 'gridage1',
-                label: '年龄',
-                value: '',
-                rules: [{ required: true, message: '年龄不能为空' }],
-                span: 6,
+                renderer: 'mis-avatar',
+                src:
+                  'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+              },
+            ],
+          },
+          {
+            renderer: 'mis-cards',
+            name: 'cards1',
+            span: 12,
+            gutter: 20,
+            shadow: 'hover',
+            visibleOn: 'menu == "group1option2"',
+            body: [
+              {
+                renderer: 'mis-avatar',
+                src:
+                  'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+                header: '<span>这是第一个卡片</span>',
               },
               {
-                renderer: 'mis-input',
-                name: 'gridage2',
-                label: '年龄',
-                value: '',
-                rules: [{ required: true, message: '年龄不能为空' }],
-                span: 12,
+                renderer: 'mis-avatar',
+                header: '<span>这是第二个卡片</span>',
+                src:
+                  'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
               },
               {
-                renderer: 'mis-card',
-                name: 'card',
-                body: [
-                  {
-                    renderer: 'mis-switch',
-                    name: 'cardsswitchs',
-                    label: '配送',
-                    value: false,
-                  },
-                ],
+                renderer: 'mis-html',
+                html: '<h1>HTML</h1>',
               },
             ],
           },
