@@ -11,7 +11,7 @@
     "deploy-dev": "npm run build && rsync -vzrtopg --progress ./dist/*  rsync://10.41.41.197:11873/mjs_weiboad_apps_fentiao_coupon"
   },
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "husky": "^2.3.0",
     "lint-staged": "^8.1.7",
     "postcss-aspect-ratio-mini": "0.0.2",
